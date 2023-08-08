@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="fats" type="javax.sql.DataSource">#Tue Aug 08 21:47:48 GMT+07:00 2023
+jdbcDriver=com.mysql.cj.jdbc.Driver
+jdbcUrl=jdbc\:mysql\://localhost\:3306/fatscompanydb?zeroDateTimeBehavior\=CONVERT_TO_NULL
+password=Admin@123
+userName=root
+</Resource>
+</resources>
