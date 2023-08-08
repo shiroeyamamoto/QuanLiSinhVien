@@ -14,7 +14,9 @@ public class DisPatcherServletInit extends AbstractAnnotationConfigDispatcherSer
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class[]{
+            HibernateConfig.class
+        };
     }
 
     @Override
