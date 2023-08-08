@@ -1,0 +1,3 @@
+com\fatscompany\configs\DisPatcherServletInit.class
+com\fatscompany\configs\WebAppContextConfig.class
+com\fatscompany\controllers\IndexController.class
