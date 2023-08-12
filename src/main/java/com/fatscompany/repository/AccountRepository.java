@@ -5,6 +5,7 @@
 package com.fatscompany.repository;
 
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.SinhVien;
 import java.util.List;
 import java.util.Map;
 

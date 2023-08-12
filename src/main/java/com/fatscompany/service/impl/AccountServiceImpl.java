@@ -5,6 +5,7 @@
 package com.fatscompany.service.impl;
 
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.AccountRepository;
 import com.fatscompany.service.AccountService;
 import java.util.List;
@@ -25,5 +26,4 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> getAccount(Map<String, String> params) {
         return this.accountRepository.getAccount(params);
     }
-    
 }
