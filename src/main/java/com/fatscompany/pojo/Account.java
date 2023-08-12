@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -87,7 +88,79 @@ public class Account implements Serializable {
         this.role = role;
         this.avatar = avatar;
     }
+    private String giangVienFirstName;
+    private String giangVienLastName;
+    private String sinhVienFirstName;
+    private String sinhVienLastName;
+    private String giangVienEmail;
+    private String sinhVienEmail;
 
+    public Account(Integer id, String username, String password, String role, String avatar,
+                   String giangVienFirstName, String giangVienLastName,
+                   String sinhVienFirstName, String sinhVienLastName,
+                   String giangVienEmail,String sinhVienEmail
+                   ) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.avatar = avatar;
+        this.giangVienFirstName = giangVienFirstName;
+        this.giangVienLastName = giangVienLastName;
+        this.sinhVienFirstName = sinhVienFirstName;
+        this.sinhVienLastName = sinhVienLastName;
+        this.giangVienEmail = giangVienEmail;
+        this.sinhVienEmail = sinhVienEmail;
+    }
+    
+    public String getSinhVienEmail() {
+        return sinhVienEmail;
+    }
+
+    public void setSinhVienEmail(String sinhVienEmail) {
+        this.sinhVienEmail = sinhVienEmail;
+    }
+    
+    public String getGiangVienEmail() {
+        return giangVienEmail;
+    }
+
+    public void setGiangVienEmail(String giangVienEmail) {
+        this.giangVienEmail = giangVienEmail;
+    }
+    
+    public String getSinhVienLastName() {
+        return sinhVienLastName;
+    }
+
+    public void setSinhVienLastName(String sinhVienLastName) {
+        this.sinhVienLastName = sinhVienLastName;
+    }
+    
+    public String getSinhVienFirstName() {
+        return sinhVienFirstName;
+    }
+
+    public void setSinhVienFirstName(String sinhVienFirstName) {
+        this.sinhVienFirstName = sinhVienFirstName;
+    }
+    
+    public String getGiangVienLastName() {
+        return giangVienLastName;
+    }
+
+    public void setGiangVienLastName(String giangVienLastName) {
+        this.giangVienLastName = giangVienLastName;
+    }
+    
+    public String getGiangVienFirstName() {
+        return giangVienFirstName;
+    }
+
+    public void setGiangVienFirstName(String giangVienFirstName) {
+        this.giangVienFirstName = giangVienFirstName;
+    }
+    
     public Integer getId() {
         return id;
     }
