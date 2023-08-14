@@ -24,6 +24,7 @@ public class IndexController {
     
     @RequestMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params){
+        
         model.addAttribute("acc", this.accountService.getAccount(params));
         
         return "index";
