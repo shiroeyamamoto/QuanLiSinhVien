@@ -36,6 +36,7 @@ public class StatsRepositoryImpl implements StatsRepository{
     @Autowired
     private LocalSessionFactoryBean factory;
 
+    @Override
     public List<Object[]> infoGiangVien() {
 
         Session s = this.factory.getObject().getCurrentSession();
@@ -55,6 +56,7 @@ public class StatsRepositoryImpl implements StatsRepository{
 
     }
 
+    @Override
     public List<Object[]> infoSinhVien() {
 
         List<Predicate> predicate = new ArrayList<>();
@@ -85,6 +87,7 @@ public class StatsRepositoryImpl implements StatsRepository{
         return query.getResultList();
     }
 
+    @Override
     public List<Object[]> traCuuDiem() {
 
         List<Predicate> predicate = new ArrayList<>();
