@@ -23,50 +23,50 @@
             </tr>
         </thead>
         <tbody>
-        <c:forEach items="${acc}" var="account">
-            <tr>
-                <td>${account.id}</td>
-                <td>${account.username}</td>
-                <td>${account.password}</td>
-                <td>${account.role}</td>
-                <td>
-            <c:choose>
-                <c:when test="${account.role eq 'TEACHER'}">
-                    ${account.giangVienFirstName}
-                </c:when>
-                <c:when test="${account.role eq 'SINHVIEN'}">
-                    ${account.sinhVienFirstName}
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-            </td>
-            <td>
-            <c:choose>
-                <c:when test="${account.role eq 'TEACHER'}">
-                    ${account.giangVienLastName}
-                </c:when>
-                <c:when test="${account.role eq 'SINHVIEN'}">
-                    ${account.sinhVienLastName}
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-            </td>
-            <td>
-            <c:choose>
-                <c:when test="${account.role eq 'TEACHER'}">
-                    ${account.giangVienEmail}
-                </c:when>
-                <c:when test="${account.role eq 'SINHVIEN'}">
-                    ${account.sinhVienEmail}
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-            </td>
-            <td>${account.avatar}</td>
-            <td><input type="submit" class="btn btn-primary" value="Edit"></td>
-            <td><input type="submit" class="btn btn-danger" value="Delete"></td>
-            </tr>
-        </c:forEach>
+            <c:forEach items="${acc}" var="account">
+                <tr>
+                    <td>${account.id}</td>
+                    <td>${account.username}</td>
+                    <td>${account.password}</td>
+                    <td>${account.role}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${account.role eq 'TEACHER'}">
+                                ${account.giangVienFirstName}
+                            </c:when>
+                            <c:when test="${account.role eq 'SINHVIEN'}">
+                                ${account.sinhVienFirstName}
+                            </c:when>
+                            <c:otherwise></c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${account.role eq 'TEACHER'}">
+                                ${account.giangVienLastName}
+                            </c:when>
+                            <c:when test="${account.role eq 'SINHVIEN'}">
+                                ${account.sinhVienLastName}
+                            </c:when>
+                            <c:otherwise></c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${account.role eq 'TEACHER'}">
+                                ${account.giangVienEmail}
+                            </c:when>
+                            <c:when test="${account.role eq 'SINHVIEN'}">
+                                ${account.sinhVienEmail}
+                            </c:when>
+                            <c:otherwise></c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${account.avatar}</td>
+                    <td><input type="submit" class="btn btn-info" value="Cập nhật"></td>
+                    <td><input type="submit" class="btn btn-danger" value="Xóa"></td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
     <ul>
