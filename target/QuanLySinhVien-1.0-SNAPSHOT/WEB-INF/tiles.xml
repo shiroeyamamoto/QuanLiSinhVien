@@ -16,10 +16,15 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/index.jsp" />
     </definition>
-  
-<!--    <definition name="login" extends="baseLayout">
+    <definition name="products" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý MÔN HỌC" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/monhoc.jsp" />
+    </definition>
+    <!--    <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/login.jsp" />
     </definition>-->
+   
 </tiles-definitions>

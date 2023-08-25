@@ -9,8 +9,22 @@
 <c:url value="/" var="action" />
 <section class="container mt-1">
     <input type="submit" class="btn btn-success mt-1" value="Create account">
-    <table class="table table-hover">
-        <thead>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <c:forEach begin="1" end="${pages}" var="i">
+                <c:url value="/" var="pageUrl">
+                    <c:param name="page" value="${i}" /> 
+                </c:url>
+                <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+                </c:forEach>
+
+        </ul>
+    </nav>
+    <table class="table table-condensed">
+
+        <thead class="table-success">
             <tr>
                 <th>Id</th>
                 <th>Username</th>
@@ -20,10 +34,13 @@
                 <th>Họ</th>
                 <th>Email</th>
                 <th>Avatar</th>
+                <th>Edit</th>
+                <th>DELETE</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${acc}" var="account">
+
                 <tr>
                     <td>${account.id}</td>
                     <td>${account.username}</td>
@@ -62,7 +79,12 @@
                             <c:otherwise></c:otherwise>
                         </c:choose>
                     </td>
-                    <td>${account.avatar}</td>
+                    <td>
+                        <!--<img src="${account.avatar}" alt="${account.username}" width="120" />-->
+
+
+                    </td>
+
                     <td><input type="submit" class="btn btn-info" value="Cập nhật"></td>
                     <td><input type="submit" class="btn btn-danger" value="Xóa"></td>
                 </tr>

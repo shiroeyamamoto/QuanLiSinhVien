@@ -26,4 +26,11 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> getAccount(Map<String, String> params) {
         return this.accountRepository.getAccount(params);
     }
+
+    @Override
+    public int countAccount() {
+        return this.accountRepository.countAccount();
+    }
+
+   
 }
