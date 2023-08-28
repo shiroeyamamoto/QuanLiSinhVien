@@ -23,7 +23,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 // Bật giao tác 
 @EnableTransactionManagement
-@ComponentScan({
+@ComponentScan({ // CUNG CẤP NƠI CHỨA CONTROLLLER
     "com.fatscompany.controllers",
     "com.fatscompany.repository",
     "com.fatscompany.service",
@@ -38,9 +38,9 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 //    @Bean
 //    public InternalResourceViewResolver internalResourceViewResolver() {
 //        InternalResourceViewResolver r = new InternalResourceViewResolver();
-//        r.setViewClass(JstlView.class);
-//        r.setPrefix("/WEB-INF/pages/");
-//        r.setSuffix(".jsp");
+//        r.setViewClass(JstlView.class);// template
+//        r.setPrefix("/WEB-INF/pages/");/// thư mục chứa
+//        r.setSuffix(".jsp");/// loại tập tin 
 //        return r;
 //    }
 //    

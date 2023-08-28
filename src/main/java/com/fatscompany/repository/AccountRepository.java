@@ -15,4 +15,5 @@ import java.util.Map;
  */
 public interface AccountRepository {
     List<Account> getAccount(Map<String, String> params);
+    int countAccount();
 }

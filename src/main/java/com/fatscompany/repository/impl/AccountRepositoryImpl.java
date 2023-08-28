@@ -87,21 +87,23 @@ public class AccountRepositoryImpl implements AccountRepository {
 
         Query query = s.createQuery(acc);
 
-        pageSize(params, query);
-
-        return query.getResultList();
-    }
-
-    private void pageSize(Map<String, String> params, Query query) {
         if (params != null) {
             String page = params.get("page");
             if (page != null) {
-
                 int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
-
                 query.setFirstResult((Integer.parseInt(page) - 1) * pageSize);
                 query.setMaxResults(pageSize);
             }
         }
+        return query.getResultList();
     }
+
+    @Override
+    public int countAccount() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query acc = s.createQuery("SELECT COUNT(*) FROM Account");
+
+        return Integer.parseInt(acc.getSingleResult().toString());
+    }
+
 }
