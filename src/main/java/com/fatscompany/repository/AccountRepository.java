@@ -14,6 +14,12 @@ import java.util.Map;
  * @author khang
  */
 public interface AccountRepository {
+
     List<Account> getAccount(Map<String, String> params);
+
+    List<Map<String, Object>> getAccountDetails(String keyword);
+
+    boolean addOrUpdateAccount(Account acc);
+
     int countAccount();
 }

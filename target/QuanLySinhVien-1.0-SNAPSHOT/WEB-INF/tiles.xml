@@ -16,10 +16,20 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/index.jsp" />
     </definition>
-    <definition name="products" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý MÔN HỌC" />
+    <definition name="monhoc" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý môn học" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/monhoc.jsp" />
+    </definition>
+    <definition name="account" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý tài khoản" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/account.jsp" />
+    </definition>
+    <definition name="addAccount" extends="baseLayout">
+        <put-attribute name="title" value="Thêm sản phẩm" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addAccount.jsp" />
     </definition>
     <!--    <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập" />
