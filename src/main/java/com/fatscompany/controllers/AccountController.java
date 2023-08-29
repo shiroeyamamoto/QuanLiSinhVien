@@ -5,16 +5,17 @@
 package com.fatscompany.controllers;
 
 import com.fatscompany.pojo.Account;
-import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.service.AccountService;
 import com.fatscompany.service.StudentService;
 import com.fatscompany.service.TeacherService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,10 +65,12 @@ public class AccountController {
     }
     
     @PostMapping("/addAccount")
-    public String add(@ModelAttribute(value = "account") Account acc){
-        if(this.accountService.addOrUpdateAccount(acc)==true)
-            return "redirect:/account";
-        
+    public String add(@ModelAttribute(value = "account") @Valid Account acc,
+            BindingResult rs){
+        if (!rs.hasErrors())
+            if(this.accountService.addOrUpdateAccount(acc)==true)
+                return "redirect:/account";
+
         return "addAccount";
     }
 }
