@@ -51,13 +51,13 @@ public class Account implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{account.username.notNullMsg}")
+    @Size(min = 6, max = 45,message = "{account.username.lengthErroMsg}")
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @NotNull(message = "{account.password.notNullMsg}")
+    @Size(min = 6, max = 255,message = "{account.password.lengthErroMsg}")
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
@@ -66,7 +66,6 @@ public class Account implements Serializable {
     @Column(name = "role")
     private String role;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "avatar")
     private String avatar;
@@ -80,6 +79,7 @@ public class Account implements Serializable {
     private Set<SinhVien> sinhVienSet;
     // Đánh dấu đây là 1 trường bình thường, phải chi tôi biết em nó sớm hơn, thì tôi không khổ như thế này
     @Transient
+    @NotNull(message = "{account.avatar.notNullMsg}")
     private MultipartFile file;
 
     // join table column 

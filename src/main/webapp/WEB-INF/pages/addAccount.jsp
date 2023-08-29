@@ -11,13 +11,16 @@
 <h1 class="text-center text-info mt-1">Thêm tài khoản</h1>
 <c:url value="/addAccount" var="action" />
 <form:form modelAttribute="account" method="post" action="${action}" enctype="multipart/form-data">
+    <form:errors path="*" element="div" cssClass="alert alert-danger"></form:errors>
     <div class="form-floating mt-3 mb-3">
         <form:input type="text" class="form-control" path="username" id="name" placeholder="Username" />
         <label for="name">Username</label>
+        <form:errors path="username" element="div" cssClass="text-danger"></form:errors>
     </div>
     <div class="form-floating mt-3 mb-3">
         <form:input type="password" class="form-control" path="password" id="password" placeholder="Password" />
         <label for="password">Password</label>
+        <form:errors path="password" element="div" cssClass="text-danger"></form:errors>
     </div>
     <div class="form-floating mt-3 mb-3">
         <form:select class="form-select" id="role" name="role" path="role">
@@ -46,6 +49,7 @@
     <div class="form-floating mt-3 mb-3">
         <form:input type="file" class="form-control" path="file" id="avatar" placeholder="Password" />
         <label for="avatar">Avatar</label>
+        <form:errors path="file" element="div" cssClass="text-danger"></form:errors>
     </div>
         
         <div class="form-floating mt-3 mb-3">
