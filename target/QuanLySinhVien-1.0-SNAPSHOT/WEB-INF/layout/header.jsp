@@ -16,7 +16,8 @@
         <div class="collapse navbar-collapse primary-navigation" id="collapsibleNavbar">
             <ul class="nav more-nav navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Account</a>
+                    <c:url value="/account" var="actionAccount"/>
+                    <a class="nav-link active" href="${actionAccount}">Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="${action}">Trang chủ</a>
@@ -24,14 +25,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Diễn đàn</a>
                 </li>
+                <c:url value="/monhoc" var="actionMonHoc"/>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Môn học</a>
+                    <a class="nav-link active" href="${actionMonHoc}">Môn học</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Lớp học</a>
                 </li>
             </ul>
-            <form class="d-flex" action="${action}">
+                <form class="d-flex" action="#" method="get">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
                 <button class="btn btn-danger" type="submit">Tìm</button>
             </form>
