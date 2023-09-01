@@ -21,6 +21,11 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/monhoc.jsp" />
     </definition>
+     <definition name="addorupdatemonhoc" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý môn học" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addorupdatemonhoc.jsp" />
+    </definition>
     <definition name="account" extends="baseLayout">
         <put-attribute name="title" value="Quản lý tài khoản" />
         <put-attribute name="content"
