@@ -17,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,14 +44,18 @@ public class MonHoc implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+
     @Column(name = "name")
+
+    @NotNull
     private String name;
     @Basic(optional = false)
-    @NotNull
+
     @Column(name = "tin_chi")
+
+    @NotNull
     private int tinChi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "monhocScoreid")
     private Set<BangDiem> bangDiemSet;
@@ -146,5 +152,5 @@ public class MonHoc implements Serializable {
     public String toString() {
         return "com.fatscompany.pojo.MonHoc[ id=" + id + " ]";
     }
-    
+
 }

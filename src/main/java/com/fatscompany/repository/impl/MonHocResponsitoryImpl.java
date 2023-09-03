@@ -67,22 +67,51 @@ public class MonHocResponsitoryImpl implements MonhocResponsitory {
     }
 
     @Override
-    public boolean addOrUpdateMonHoc(MonHoc mh) {
-
+    public boolean updateMonHoc(int id, Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
-            if (mh.getId() == null) {
-                s.save(mh);
-            } else {
-                s.update(mh);
+
+            if (params != null) {
+                MonHoc tc = getMonHocById(id);
+                String tmp = params.get("name");
+                if (tmp != null && !tmp.isEmpty()) {
+                    tc.setName(tmp);
+                }
+                tmp = params.get("tinChi");
+                if (tmp != null && !tmp.isEmpty()) {
+                    tc.setTinChi(Integer.parseInt(tmp));
+                }
+                s.update(tc);
             }
-
-            return true;
         } catch (HibernateException ex) {
-
+            ex.printStackTrace();
             return false;
         }
+        return true;
+    }
 
+    @Override
+    public boolean updateMonHoc(MonHoc tc) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(tc);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addMonHoc(MonHoc tc) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.save(tc);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -104,4 +133,3 @@ public class MonHocResponsitoryImpl implements MonhocResponsitory {
         }
     }
 }
-

@@ -13,14 +13,15 @@ import java.util.Map;
  * @author anhkh
  */
 public interface MonhocResponsitory {
-  
-    List<MonHoc> getListMonHoc( Map<String, String> params);
+
+    List<MonHoc> getListMonHoc(Map<String, String> params);
 
     int countMonHoc();
 
-    boolean addOrUpdateMonHoc(MonHoc mh);
+    boolean updateMonHoc(int id, Map<String, String> params);
+    boolean updateMonHoc(MonHoc tc);
 
-
+    boolean addMonHoc(MonHoc tc);
 
     MonHoc getMonHocById(int id);
 
