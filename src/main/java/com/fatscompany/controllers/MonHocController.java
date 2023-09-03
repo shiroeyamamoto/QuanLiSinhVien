@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author khang
  */
 @Controller
-
 public class MonHocController {
 
     @Autowired
@@ -38,28 +37,32 @@ public class MonHocController {
 
         return "monhoc";
     }
-
     @GetMapping("/addorupdatemonhoc")
-    public String addOrUpdateMonHoc(Model model) {
-        MonHoc monHoc = new MonHoc();
-        model.addAttribute("monhoc", monHoc);
+    public String add(Model model) {
+        model.addAttribute("monhoc", new MonHoc());
         return "addorupdatemonhoc";
     }
-       @GetMapping("/addorupdatemonhoc/{id}")
-    public String update(Model model, @PathVariable(value = "id") int id) {
+     @GetMapping("/addorupdatemonhoc/{id}")
+    public String add(Model model ,@PathVariable("id") int id) {
         model.addAttribute("monhoc", this.monHocService.getMonHocById(id));
         return "addorupdatemonhoc";
     }
+
     
     @PostMapping("/addorupdatemonhoc")
-    public String add(@ModelAttribute(value = "monhoc") @Valid MonHoc mh,
-            BindingResult rs) {
-        
-        if (!rs.hasErrors())
-            if (this.monHocService.addOrUpdateMonHoc(mh) == true)
-                return "redirect:/";
+    public String addOrUpdateMonHoc(@ModelAttribute(value = "monhoc") @Valid MonHoc monHoc, BindingResult rs) {
+        if (!rs.hasErrors()) {
+            if (monHoc.getId() != null) {
+                if(this.monHocService.updateMonHoc(monHoc)){
+                    return "redirect:/";
+                }
+            }
+            if (this.monHocService.addMonHoc(monHoc) == true) {
+                    return "redirect:/";
+            }
+        }
 
-        return "monhoc";
+        return "addorupdatemonhoc";
     }
 
 }

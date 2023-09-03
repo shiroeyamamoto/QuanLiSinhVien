@@ -35,9 +35,10 @@ public class MonHocServiceImpl implements MonHocService {
     }
 
     @Override
-    public boolean addOrUpdateMonHoc(MonHoc mh) {
-        return this.monHocRepository.addOrUpdateMonHoc(mh);
+    public boolean updateMonHoc(int id, Map<String, String> params) {
+        return this.monHocRepository.updateMonHoc( id,params);
     }
+   
 
     @Override
     public MonHoc getMonHocById(int id) {
@@ -47,5 +48,15 @@ public class MonHocServiceImpl implements MonHocService {
     @Override
     public boolean deleteMonHoc(int id) {
         return this.monHocRepository.deleteMonHoc(id);
+    }
+
+    @Override
+    public boolean addMonHoc(MonHoc tc) {
+        return this.monHocRepository.addMonHoc(tc);
+    }
+
+    @Override
+    public boolean updateMonHoc(MonHoc tc) {
+       return this.monHocRepository.updateMonHoc(tc);
     }
 }

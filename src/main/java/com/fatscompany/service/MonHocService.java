@@ -19,9 +19,10 @@ public interface MonHocService {
 
     int countMonHoc();
 
-    boolean addOrUpdateMonHoc(MonHoc mh);
+  boolean addMonHoc(MonHoc tc);
+   boolean updateMonHoc(int id, Map<String, String> params);
 
-
+boolean updateMonHoc(MonHoc tc);
 
     MonHoc getMonHocById(int id);
 
