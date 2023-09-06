@@ -17,11 +17,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -131,5 +129,13 @@ public class MonHocResponsitoryImpl implements MonhocResponsitory {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<MonHoc> getListMonHocNone() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("FROM MonHoc");
+        
+        return q.getResultList();
     }
 }

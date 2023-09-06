@@ -29,8 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${actionMonHoc}">Môn học</a>
                 </li>
+                 <c:url value="/lop" var="actionLopHoc"/>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Lớp học</a>
+                    <a class="nav-link active" href="${actionLopHoc}" href="#">Lớp học</a>
                 </li>
             </ul>
                 <form class="d-flex" action="#" method="get">

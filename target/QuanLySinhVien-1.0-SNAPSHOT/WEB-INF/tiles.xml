@@ -21,7 +21,7 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/monhoc.jsp" />
     </definition>
-     <definition name="addorupdatemonhoc" extends="baseLayout">
+    <definition name="addorupdatemonhoc" extends="baseLayout">
         <put-attribute name="title" value="Quản lý môn học" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/addorupdatemonhoc.jsp" />
@@ -31,10 +31,21 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/account.jsp" />
     </definition>
+    <definition name="lop" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý LỚP HỌC" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/lop.jsp" />
+    </definition>
     <definition name="addAccount" extends="baseLayout">
         <put-attribute name="title" value="Thêm sản phẩm" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/addAccount.jsp" />
+        
+    </definition>
+    <definition name="addorupdatelop" extends="baseLayout">
+        <put-attribute name="title" value="Thêm Lop " />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addorupdatelop.jsp" />
     </definition>
     <!--    <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập" />

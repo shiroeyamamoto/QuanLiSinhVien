@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -48,9 +49,12 @@ public class Hoc implements Serializable {
     private Date registerDate;
     @JoinColumn(name = "monhocHOC_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+ 
     private MonHoc monhocHOCid;
     @JoinColumn(name = "sinhvienHOC_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+      
+
     private SinhVien sinhvienHOCid;
 
     public Hoc() {
