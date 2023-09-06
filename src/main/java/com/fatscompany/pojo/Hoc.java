@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,11 +49,12 @@ public class Hoc implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registerDate;
     @JoinColumn(name = "monhocHOC_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
  
     private MonHoc monhocHOCid;
+    
     @JoinColumn(name = "sinhvienHOC_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
       
 
     private SinhVien sinhvienHOCid;
