@@ -15,6 +15,7 @@ import java.util.Map;
 public interface MonhocResponsitory {
 
     List<MonHoc> getListMonHoc(Map<String, String> params);
+   List<MonHoc> getListMonHocNone();
 
     int countMonHoc();
 

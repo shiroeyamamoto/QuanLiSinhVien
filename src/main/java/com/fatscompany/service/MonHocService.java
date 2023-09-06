@@ -16,7 +16,7 @@ public interface MonHocService {
 
      
     List<MonHoc> getListMonHoc(Map<String, String> params);
-
+   List<MonHoc> getListMonHocNone();
     int countMonHoc();
 
   boolean addMonHoc(MonHoc tc);

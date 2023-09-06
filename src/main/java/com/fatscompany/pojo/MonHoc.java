@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -58,10 +59,13 @@ public class MonHoc implements Serializable {
     @NotNull
     private int tinChi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "monhocScoreid")
+    @JsonIgnore
     private Set<BangDiem> bangDiemSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "monhocId")
+    @JsonIgnore
     private Set<Day> daySet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "monhocHOCid")
+    @JsonIgnore
     private Set<Hoc> hocSet;
 
     public MonHoc() {

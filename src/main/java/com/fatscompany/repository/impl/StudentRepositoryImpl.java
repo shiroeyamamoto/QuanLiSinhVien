@@ -1,4 +1,4 @@
-/*
+   /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -31,6 +31,13 @@ public class StudentRepositoryImpl implements  StudentRepository{
         Query q = s.createNamedQuery("SinhVien.findAll");
         
         return q.getResultList();
+    }
+    
+    public SinhVien getSinhVienById(int id) {
+      
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(SinhVien.class, id);
+   
     }
     
 }

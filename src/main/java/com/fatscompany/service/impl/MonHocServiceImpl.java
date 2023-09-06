@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.fatscompany.service.impl;
 
 import com.fatscompany.pojo.MonHoc;
@@ -58,5 +54,10 @@ public class MonHocServiceImpl implements MonHocService {
     @Override
     public boolean updateMonHoc(MonHoc tc) {
        return this.monHocRepository.updateMonHoc(tc);
+    }
+
+    @Override
+    public List<MonHoc> getListMonHocNone() {
+ return this.monHocRepository.getListMonHocNone();
     }
 }
