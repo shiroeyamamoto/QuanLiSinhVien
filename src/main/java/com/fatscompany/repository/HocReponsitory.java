@@ -5,6 +5,7 @@
 package com.fatscompany.repository;
 
 import com.fatscompany.pojo.Hoc;
+import com.fatscompany.pojo.MonHoc;
 import java.util.List;
 
 /**
@@ -12,5 +13,8 @@ import java.util.List;
  * @author anhkh
  */
 public interface HocReponsitory {
+
     public List<Hoc> getListHoc();
+
+    public List<MonHoc> getMonHocByStu(int sinhVienId);
 }
