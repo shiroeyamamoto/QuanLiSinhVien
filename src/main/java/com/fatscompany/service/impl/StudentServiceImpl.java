@@ -25,5 +25,10 @@ public class StudentServiceImpl implements StudentService{
     public List<SinhVien> getSinhVien() {
         return this.StudentRepo.getSinhVien();
     }
+
+    @Override
+    public boolean addOrUpdateStudent(SinhVien sv) {
+        return this.StudentRepo.addOrUpdateStudent(sv);
+    }
     
 }

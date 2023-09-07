@@ -173,6 +173,14 @@ public class AccountRepositoryImpl implements AccountRepository {
             return false;
         }
     }
+    
+    @Override
+    public List<Account> selectAllAccount() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNamedQuery("Account.findAll");
+        
+        return q.getResultList();
+    }
 
     @Override
     public int countAccount() {
@@ -180,6 +188,26 @@ public class AccountRepositoryImpl implements AccountRepository {
         Query acc = s.createQuery("SELECT COUNT(*) FROM Account");
 
         return Integer.parseInt(acc.getSingleResult().toString());
+    }
+
+    @Override
+    public Account getAccountById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Account.class, id);
+    }
+
+    @Override
+    public boolean deleteAccount(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Account acc = this.getAccountById(id);
+        
+        try{
+            s.delete(acc);
+            return true;
+        } catch(HibernateException ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }

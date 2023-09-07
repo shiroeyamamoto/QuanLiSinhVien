@@ -18,8 +18,8 @@ public class AccountFormatter implements Formatter<Account>{
     
     // đổ từ java ra template
     @Override
-    public String print(Account teacher, Locale locale) {
-        return String.valueOf(teacher.getId());
+    public String print(Account acc, Locale locale) {
+        return String.valueOf(acc.getId());
     }
 
     

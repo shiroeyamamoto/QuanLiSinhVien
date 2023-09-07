@@ -8,6 +8,7 @@ import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -33,4 +34,19 @@ public class StudentRepositoryImpl implements  StudentRepository{
         return q.getResultList();
     }
     
+    @Override
+    public boolean addOrUpdateStudent(SinhVien sv) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (sv.getId() == null) {
+                s.save(sv);
+            } else {
+                s.update(sv);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
