@@ -13,4 +13,8 @@ import java.util.List;
  */
 public interface TeacherRepository {
     List<GiangVien> getGiangVien();
+    
+    boolean addOrUpdateTeacher(GiangVien gv);
+    
+    public GiangVien getTeacherById(int id);
 }

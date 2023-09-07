@@ -4,10 +4,12 @@
  */
 package com.fatscompany.repository.impl;
 
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.GiangVien;
 import com.fatscompany.repository.TeacherRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -30,5 +32,27 @@ public class TeacherRepositoryImpl implements TeacherRepository{
         Query q = s.createNamedQuery("GiangVien.findAll");
         
         return q.getResultList();
+    }
+    
+    @Override
+    public boolean addOrUpdateTeacher(GiangVien gv) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (gv.getId() == null) {
+                s.save(gv);
+            } else {
+                s.update(gv);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    @Override
+    public GiangVien getTeacherById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(GiangVien.class, id);
     }
 }

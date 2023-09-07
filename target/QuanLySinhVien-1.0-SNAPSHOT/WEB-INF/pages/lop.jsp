@@ -5,7 +5,11 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:url value="/lop" var="action" />
+<%@ taglib prefix="sec" 
+           uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access ="hasRole(',ADMIN')">
+    <c:url value="/lop" var="action" />
 <section class="container mt-1">
     <h1 class="text-center text-info mt-1">Quản lí Lớp Học</h1>
     <div>
@@ -47,6 +51,8 @@
 
     </ul>
 </section>
+</sec:authorize>
+
 <script>
     function del(path) {
         if (confirm("Bạn chắc chắn xóa không?") === true) {

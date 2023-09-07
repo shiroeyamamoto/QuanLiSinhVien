@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:url value="/" var="action" />
 <section class="container mt-1">
+    <h1 class="text-center text-info mt-1">${pageContext.request.userPrincipal}</h1>
     <h1 class="text-center text-info mt-1">Chào mừng đến với Fats company</h1>
 </section>
 

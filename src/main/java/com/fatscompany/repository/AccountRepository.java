@@ -5,7 +5,7 @@
 package com.fatscompany.repository;
 
 import com.fatscompany.pojo.Account;
-import com.fatscompany.pojo.SinhVien;
+import com.fatscompany.pojo.GiangVien;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +22,10 @@ public interface AccountRepository {
     boolean addOrUpdateAccount(Account acc);
 
     int countAccount();
+    
+    List<Account> selectAllAccount();
+    
+    Account getAccountById(int id);
+    
+    boolean deleteAccount(int id);
 }

@@ -6,6 +6,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" 
+           uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access ="hasRole(',ADMIN')">
 <c:url value="/monhoc" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-1">Quản lí môn học</h1>
@@ -13,7 +17,9 @@
         <a href="<c:url value="/addorupdatemonhoc" />" class="btn btn-info">Thêm Môn Học</a>
 
     </div>
-    <table class="table table-condensed mx-2">
+
+
+    <table class="table table-condensed">
         <thead class="table-success">
             <tr>
                 <th>Id</th>
@@ -29,15 +35,13 @@
                     <td>${monHoc.id}</td>
                     <td>${monHoc.name}</td>
                     <td>${monHoc.tinChi}</td>
-                    <td style="vertical-align: middle; text-align: center;">
-                        <a href="<c:url value='/addorupdatemonhoc/${monHoc.id}'/>" class="btn btn-warning">Update</a>
-                    </td>
 
                     <td style="vertical-align: middle; text-align: center;">
                     
 
                         <button onclick="del('<c:url value="/deletemonhoc/${monHoc.id}/"/>')" class="btn btn-danger">Delete</button>
 
+                        <a href="<c:url value='/addorupdatemonhoc'/>" class="btn btn-warning">Update</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -47,6 +51,7 @@
         </tbody>
     </table>
 </section>
+</sec:authorize>
 
 <script>
     function del(path) {

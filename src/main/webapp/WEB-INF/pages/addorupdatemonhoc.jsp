@@ -6,7 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:url value="/addorupdatemonhoc" var="action" />
+<%@ taglib prefix="sec" 
+           uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access ="hasRole(',ADMIN')">
+    <c:url value="/addorupdatemonhoc" var="action" />
 <h1 class="text-center text-info mt-1">THÊM MÔN HỌC</h1>
 <form:form method="post" action="${action}" modelAttribute="monhoc" >
       <form:errors path="*" element="div" cssClass="text-danger"/>
@@ -27,3 +30,4 @@
         </button>
     </div>
 </form:form>
+</sec:authorize>
