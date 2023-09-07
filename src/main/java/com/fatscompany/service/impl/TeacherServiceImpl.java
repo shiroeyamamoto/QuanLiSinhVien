@@ -25,5 +25,15 @@ public class TeacherServiceImpl implements TeacherService{
     public List<GiangVien> getGiangVien() {
         return this.teacherRepository.getGiangVien();
     }
+
+    @Override
+    public boolean addOrUpdateTeacher(GiangVien gv) {
+        return this.teacherRepository.addOrUpdateTeacher(gv);
+    }
+
+    @Override
+    public GiangVien getTeacherById(int id) {
+        return this.teacherRepository.getTeacherById(id);
+    }
     
 }

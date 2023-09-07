@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -61,25 +62,27 @@ public class Account implements Serializable {
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Size(min = 1, max = 45)
     @Column(name = "role")
     private String role;
     @Basic(optional = false)
-    @Size(min = 1, max = 255)
     @Column(name = "avatar")
     private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountGVid")
+    @JsonIgnore //api cần cho nó rãnh
     private Set<GiangVien> giangVienSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountBVid")
+    @JsonIgnore
     private Set<BaiViet> baiVietSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountCMid")
+    @JsonIgnore
     private Set<Comment> commentSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountSVid")
+    @JsonIgnore
     private Set<SinhVien> sinhVienSet;
     // Đánh dấu đây là 1 trường bình thường, phải chi tôi biết em nó sớm hơn, thì tôi không khổ như thế này
     @Transient
-    @NotNull(message = "{account.avatar.notNullMsg}")
     private MultipartFile file;
 
     // join table column 

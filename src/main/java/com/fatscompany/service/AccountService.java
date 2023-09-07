@@ -21,4 +21,10 @@ public interface AccountService {
     boolean addOrUpdateAccount(Account acc);
 
     int countAccount();
+    
+    List<Account> selectAllAccount();
+    
+    Account getAccountById(int id);
+    
+    public boolean deleteAccount(int id);
 }

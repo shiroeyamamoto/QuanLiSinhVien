@@ -13,4 +13,8 @@ import java.util.List;
  */
 public interface TeacherService {
     List<GiangVien> getGiangVien();
+    
+    boolean addOrUpdateTeacher(GiangVien gv);
+    
+    public GiangVien getTeacherById(int id);
 }

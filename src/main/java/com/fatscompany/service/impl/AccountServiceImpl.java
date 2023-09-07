@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,27 +39,25 @@ public class AccountServiceImpl implements AccountService {
         return this.accountRepository.getAccount(params);
     }
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     public boolean addOrUpdateAccount(Account acc) {
         try {
-            Map res = this.cloudinary.uploader().upload(acc.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-            acc.setAvatar(res.get("secure_url").toString());
-
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                byte[] hashBytes = md.digest(acc.getPassword().getBytes());
-
-                StringBuilder hashBuilder = new StringBuilder();
-                for (byte b : hashBytes) {
-                    hashBuilder.append(String.format("%02x", b));
+            if (acc.getAvatar() == "") {
+                if (acc.getFile() != null) {
+                    Map res = this.cloudinary.uploader().upload(acc.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                    acc.setAvatar(res.get("secure_url").toString());
                 }
-
-                acc.setPassword(hashBuilder.toString());
-            } catch (NoSuchAlgorithmException e) {
-                // Xử lý ngoại lệ nếu thuật toán không hỗ trợ
-                e.printStackTrace();
-                return false; 
+                if(acc.getAvatar()==null || acc.getAvatar()==""){
+                    acc.setAvatar("https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png");
+                }
             }
+
+            String hashedPassword = passwordEncoder.encode(acc.getPassword());
+            acc.setPassword(hashedPassword);
+            acc.setRole("ROLE_"+acc.getRole());
         } catch (IOException ex) {
             Logger.getLogger(AccountServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,4 +74,18 @@ public class AccountServiceImpl implements AccountService {
         return this.accountRepository.getAccountDetails(keyword);
     }
 
+    @Override
+    public List<Account> selectAllAccount() {
+        return this.accountRepository.selectAllAccount();
+    }
+
+    @Override
+    public Account getAccountById(int id) {
+        return this.accountRepository.getAccountById(id);
+    }
+
+    @Override
+    public boolean deleteAccount(int id) {
+        return this.accountRepository.deleteAccount(id);
+    }
 }

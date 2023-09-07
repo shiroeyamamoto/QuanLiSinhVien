@@ -37,7 +37,7 @@
                        value="/WEB-INF/pages/lop.jsp" />
     </definition>
     <definition name="addAccount" extends="baseLayout">
-        <put-attribute name="title" value="Thêm sản phẩm" />
+        <put-attribute name="title" value="Thêm tài khoản" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/addAccount.jsp" />
         
@@ -46,6 +46,26 @@
         <put-attribute name="title" value="Thêm Lop " />
         <put-attribute name="content"
                        value="/WEB-INF/pages/addorupdatelop.jsp" />
+    </definition>
+    <definition name="addTeacher" extends="baseLayout">
+        <put-attribute name="title" value="Thêm giảng viên " />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addTeacher.jsp" />
+    </definition>
+    <definition name="addStudent" extends="baseLayout">
+        <put-attribute name="title" value="Thêm sinh viên " />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addStudent.jsp" />
+    </definition>
+    <definition name="giangVien" extends="baseLayout">
+        <put-attribute name="title" value="Giảng viên" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/giangVien.jsp" />
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/login.jsp" />
     </definition>
     <!--    <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập" />

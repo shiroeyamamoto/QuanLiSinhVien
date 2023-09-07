@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface StudentService {
     List<SinhVien> getSinhVien();
+    
+    boolean addOrUpdateStudent(SinhVien sv);
 }

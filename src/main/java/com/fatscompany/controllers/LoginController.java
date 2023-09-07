@@ -6,13 +6,14 @@ package com.fatscompany.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author anhkh
+ * @author khang
  */
 @Controller
-public class UserController {
+public class LoginController {
     @GetMapping("/login")
     public String login() {
         return "login";
