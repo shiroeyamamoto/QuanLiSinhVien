@@ -5,6 +5,8 @@
 package com.fatscompany.service;
 
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.GiangVien;
+import com.fatscompany.pojo.SinhVien;
 import java.util.List;
 import java.util.Map;
 
@@ -26,5 +28,5 @@ public interface AccountService {
     
     Account getAccountById(int id);
     
-    public boolean deleteAccount(int id);
+    public boolean deleteAccount(int id, List<GiangVien> gv, List<SinhVien> sv);
 }

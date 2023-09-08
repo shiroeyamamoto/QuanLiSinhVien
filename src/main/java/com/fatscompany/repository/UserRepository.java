@@ -12,4 +12,6 @@ import com.fatscompany.pojo.Account;
  */
 public interface UserRepository {
     Account getAccountByUsername(String username);
+    
+    boolean authUser(String username, String password);
 }

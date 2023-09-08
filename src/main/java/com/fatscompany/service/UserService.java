@@ -4,12 +4,17 @@
  */
 package com.fatscompany.service;
 
+import com.fatscompany.pojo.Account;
+import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author khang
  */
-public interface UserService extends UserDetailsService{
-    
+public interface UserService extends UserDetailsService {
+
+    Account getUserByUn(String username);
+
+    boolean authUser(String username, String password);
 }
