@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.persistence.Query;
 import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
@@ -77,13 +78,13 @@ public class AccountRepositoryImpl implements AccountRepository {
                 accountRoot.get("password"),
                 accountRoot.get("role"),
                 accountRoot.get("avatar")
-//                ,
-//                giangVienJoin.get("firstName"),
-//                giangVienJoin.get("lastName"),
-//                sinhVienJoin.get("firstName"),
-//                sinhVienJoin.get("lastName"),
-//                giangVienJoin.get("email"),
-//                sinhVienJoin.get("email")
+        //                ,
+        //                giangVienJoin.get("firstName"),
+        //                giangVienJoin.get("lastName"),
+        //                sinhVienJoin.get("firstName"),
+        //                sinhVienJoin.get("lastName"),
+        //                giangVienJoin.get("email"),
+        //                sinhVienJoin.get("email")
         );
 
         // Sap xep giảm dần
@@ -173,12 +174,12 @@ public class AccountRepositoryImpl implements AccountRepository {
             return false;
         }
     }
-    
+
     @Override
     public List<Account> selectAllAccount() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createNamedQuery("Account.findAll");
-        
+
         return q.getResultList();
     }
 
@@ -196,15 +197,34 @@ public class AccountRepositoryImpl implements AccountRepository {
         return s.get(Account.class, id);
     }
 
+    public Account getAccountByUserCurrent(String userName) {
+        Session session = this.factory.getObject().getCurrentSession();
+
+        // Sử dụng HQL để truy vấn tài khoản dựa trên tên người dùng
+        String hql = "FROM Account WHERE username = :userName";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", userName);
+
+        List<Account> results = query.getResultList();
+
+        // Kiểm tra xem có tài khoản nào được tìm thấy không
+        if (results != null && !results.isEmpty()) {
+            return results.get(0);
+        } else {
+        
+            return null;
+        }
+    }
+
     @Override
     public boolean deleteAccount(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         Account acc = this.getAccountById(id);
-        
-        try{
+
+        try {
             s.delete(acc);
             return true;
-        } catch(HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
         }

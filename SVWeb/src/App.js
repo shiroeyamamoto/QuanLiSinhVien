@@ -6,8 +6,10 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Login from "./components/Login";
 import Forum from "./components/Forum";
+import MonHoc from "./components/MonHoc";
 import { createContext, useReducer } from "react";
 import MyUserReducer from "./reducers/MyUserReducer";
+
 
 export const MyUserContext = createContext();
 

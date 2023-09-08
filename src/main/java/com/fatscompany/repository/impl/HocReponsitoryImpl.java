@@ -3,9 +3,9 @@ package com.fatscompany.repository.impl;
 import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
+import com.fatscompany.pojo.OtherScore;
 import com.fatscompany.repository.HocReponsitory;
 import java.util.ArrayList;
-
 
 import org.springframework.stereotype.Repository;
 
@@ -51,7 +51,7 @@ public class HocReponsitoryImpl implements HocReponsitory {
             return lMh;
 
         } catch (Exception e) {
-           
+
             e.printStackTrace();
             throw new RuntimeException("Lỗi trong quá trình truy vấn danh sách Hoc.", e);
         }
@@ -79,6 +79,14 @@ public class HocReponsitoryImpl implements HocReponsitory {
         }
     }
 
+    public List<OtherScore> getListOScroceByBangDiem(int bangDiemid) {
+        Session s = this.factory.getObject().getCurrentSession();
+        String hql = "FROM OtherScore o WHERE o.bangdiemId.id = :bangDiemid"; // Sử dụng alias 'o' thay vì 'h'
+        Query<OtherScore> query = s.createQuery(hql, OtherScore.class);
+        query.setParameter("bangDiemid", bangDiemid);
+
+        List<OtherScore> danhSachOtherScore = query.getResultList();
+        return danhSachOtherScore;
+    }
+
 }
-
-

@@ -27,6 +27,7 @@ public interface AccountService {
     List<Account> selectAllAccount();
     
     Account getAccountById(int id);
+        public Account getAccountByUserCurrent(String userName);
     
     public boolean deleteAccount(int id, List<GiangVien> gv, List<SinhVien> sv);
 }
