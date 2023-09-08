@@ -34,7 +34,6 @@ public class ApiMonHocController {
 
     @CrossOrigin
     @GetMapping("/monhocs")
-
     public ResponseEntity<List<MonHoc>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.mhSer.getListMonHoc(params), HttpStatus.OK);
     }
@@ -45,4 +44,9 @@ public class ApiMonHocController {
         this.mhSer.deleteMonHoc(id);
     }
 
+//    @CrossOrigin
+//    @GetMapping("/monhocs/{id}")
+//    public ResponseEntity<List<MonHoc>> list(@PathVariable(value = "id") int id) {
+//        return new ResponseEntity<>(this.mhSer.getListMonHoc(params), HttpStatus.OK);
+//    }
 }

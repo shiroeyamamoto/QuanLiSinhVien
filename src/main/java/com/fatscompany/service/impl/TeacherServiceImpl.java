@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.GiangVien;
 import com.fatscompany.repository.TeacherRepository;
 import com.fatscompany.service.TeacherService;
@@ -34,6 +35,11 @@ public class TeacherServiceImpl implements TeacherService{
     @Override
     public GiangVien getTeacherById(int id) {
         return this.teacherRepository.getTeacherById(id);
+    }
+
+    @Override
+    public GiangVien getTeacherByAcc(Account account) {
+        return this.teacherRepository.getTeacherByAcc(account);
     }
     
 }

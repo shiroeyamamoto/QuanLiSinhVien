@@ -11,9 +11,13 @@ import MyUserReducer from "./reducers/MyUserReducer";
 
 export const MyUserContext = createContext();
 
+export const MyUserDetail = createContext();
+
 const App = () => {
 
   const [user, dispatch] = useReducer(MyUserReducer,cookie.load("user") || null);
+
+  //const [userDetail, dispatch] = useReducer(MyUserReducer,cookie.load("user") || null);
 
   return (
     <MyUserContext.Provider value={[user,dispatch]}>

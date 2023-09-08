@@ -7,7 +7,12 @@ package com.fatscompany.repository.impl;
 import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.GiangVien;
 import com.fatscompany.repository.TeacherRepository;
+import com.fatscompany.service.AccountService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -22,18 +27,21 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class TeacherRepositoryImpl implements TeacherRepository{
+public class TeacherRepositoryImpl implements TeacherRepository {
+
     @Autowired
-        private LocalSessionFactoryBean factory;
-    
+    private LocalSessionFactoryBean factory;
+    @Autowired
+    private AccountService accService;
+
     @Override
     public List<GiangVien> getGiangVien() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createNamedQuery("GiangVien.findAll");
-        
+
         return q.getResultList();
     }
-    
+
     @Override
     public boolean addOrUpdateTeacher(GiangVien gv) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -49,10 +57,34 @@ public class TeacherRepositoryImpl implements TeacherRepository{
             return false;
         }
     }
-    
+
     @Override
     public GiangVien getTeacherById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(GiangVien.class, id);
+    }
+    
+    public GiangVien getTeacherByAccountId(Account account) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(GiangVien.class, account.getId());
+    }
+    
+    @Override
+    public GiangVien getTeacherByAcc(Account account) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        if (account == null) {
+            return null;
+        }
+        Query q = s.createNamedQuery("GiangVien.findAll");
+
+        List<GiangVien> listGv = q.getResultList();
+        
+        for(int i=0; i < listGv.size(); i++){
+            if(listGv.get(i).getAccountGVid()==account){
+               return listGv.get(i);}
+        }
+        
+        return null;
     }
 }

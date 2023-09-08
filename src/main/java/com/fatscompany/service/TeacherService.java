@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service;
 
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.GiangVien;
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface TeacherService {
     boolean addOrUpdateTeacher(GiangVien gv);
     
     public GiangVien getTeacherById(int id);
+    
+    public GiangVien getTeacherByAcc(Account account);
 }
