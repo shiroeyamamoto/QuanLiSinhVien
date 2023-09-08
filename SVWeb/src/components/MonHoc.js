@@ -1,41 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Container } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
+import { MyUserContext } from "../App";
+import { authApi, endpoints } from "../configs/Apis";
 
 const MonHoc = () => {
   const [data, setData] = useState([]);
+  const [user] = useContext(MyUserContext);
 
   useEffect(() => {
-    // Thực hiện yêu cầu API để lấy danh sách môn học và điểm
-    fetch('http://localhost:8080/QuanLySinhVien/api/studenScores/listscore')
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+    const fetchData = async () => {
+      try {
+        // Gọi API danh sách môn học bằng token xác thực
+        const { data } = await authApi().get(endpoints['detailMonHoc']);
+
+        // Xử lý dữ liệu nếu nó không phải là null
+        if (data) {
+          setData(data);
+        } else {
+          console.error('Dữ liệu là null hoặc trống');
+        }
+      } catch (error) {
+        console.error('Lỗi khi truy xuất dữ liệu:', error);
+      }
+    };
+
+    // Kiểm tra xem user đã đăng nhập hay chưa
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   return (
     <div>
-      <h2>Danh sách môn học và điểm</h2>
-      <table  striped bordered hover>
-        <thead>
-          <tr>
-            <th>Tên Môn Học</th> {/* Thay đổi tiêu đề cột */}
-            <th>Điểm Giữa Kì</th>
-            <th>Điểm Cuối Kì</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(item => (
-            <tr key={item.studentId + item.subjectName}>
-              <td>{item.subjectName}</td> {/* Hiển thị tên môn học thay vì mã */}
-              <td>{item.diemGiuaki}</td>
-              <td>{item.diemCuoiKi}</td>
+      <Container>
+        <h1>Danh sách môn học và điểm</h1>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Tên Môn Học</th>
+              <th>Điểm Giữa Kì</th>
+              <th>Điểm Cuối Kì</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map(item => (
+              <tr key={item.studentId + item.subjectName}>
+                <td>{item.subjectName}</td>
+                <td>{item.diemGiuaki}</td>
+                <td>{item.diemCuoiKi}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Container>
     </div>
   );
 };

@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
-    
+
     @Autowired
     private Cloudinary cloudinary;
 
@@ -51,14 +51,14 @@ public class AccountServiceImpl implements AccountService {
                     Map res = this.cloudinary.uploader().upload(acc.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
                     acc.setAvatar(res.get("secure_url").toString());
                 }
-                if(acc.getAvatar()==null || acc.getAvatar()==""){
+                if (acc.getAvatar() == null || acc.getAvatar() == "") {
                     acc.setAvatar("https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png");
                 }
             }
 
             String hashedPassword = passwordEncoder.encode(acc.getPassword());
             acc.setPassword(hashedPassword);
-            acc.setRole("ROLE_"+acc.getRole());
+            acc.setRole("ROLE_" + acc.getRole());
         } catch (IOException ex) {
             Logger.getLogger(AccountServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,19 +88,25 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean deleteAccount(int id, List<GiangVien> gv, List<SinhVien> sv) {
         Account acc = this.accountRepository.getAccountById(id);
-        
-        for(int i=0; i< gv.size();i++){
-            if(gv.get(i).getAccountGVid().getId()== id){
+
+        for (int i = 0; i < gv.size(); i++) {
+            if (gv.get(i).getAccountGVid().getId() == id) {
                 gv.get(i).setAccountGVid(null);
             }
         }
-        
-        for(int i=0; i< gv.size();i++){
-            if(sv.get(i).getAccountSVid().getId()== id){
+
+        for (int i = 0; i < gv.size(); i++) {
+            if (sv.get(i).getAccountSVid().getId() == id) {
                 sv.get(i).setAccountSVid(null);
             }
         }
-        
+
         return this.accountRepository.deleteAccount(id);
+    }
+
+    @Override
+    public Account getAccountByUserCurrent(String userName) {
+        return this.accountRepository.getAccountByUserCurrent(userName);
+
     }
 }

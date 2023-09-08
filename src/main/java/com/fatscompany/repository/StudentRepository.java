@@ -4,6 +4,7 @@
  */
 package com.fatscompany.repository;
 
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.SinhVien;
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
  */
 public interface StudentRepository {
     List<SinhVien> getSinhVien();
-    
+    public SinhVien getSinhVienByAccountId(Account account);
     boolean addOrUpdateStudent(SinhVien sv);
 }

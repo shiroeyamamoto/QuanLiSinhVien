@@ -8,7 +8,8 @@ export const endpoints = {
     "accounts": `${SERVER_CONTEXT}/api/accounts`,
     "days": `${SERVER_CONTEXT}/api/days`,
     "login": `${SERVER_CONTEXT}/api/login/`,
-    "current-user": `${SERVER_CONTEXT}/api/current-user/`
+    "current-user": `${SERVER_CONTEXT}/api/current-user/`,
+    "detailMonHoc": `${SERVER_CONTEXT}/api/studenScores/listscore`
 }
 
 export const authApi = () => {
