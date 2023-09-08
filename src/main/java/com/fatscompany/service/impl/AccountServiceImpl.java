@@ -7,6 +7,7 @@ package com.fatscompany.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.GiangVien;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.AccountRepository;
 import com.fatscompany.service.AccountService;
@@ -30,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
-
+    
     @Autowired
     private Cloudinary cloudinary;
 
@@ -85,7 +86,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean deleteAccount(int id) {
+    public boolean deleteAccount(int id, List<GiangVien> gv, List<SinhVien> sv) {
+        Account acc = this.accountRepository.getAccountById(id);
+        
+        for(int i=0; i< gv.size();i++){
+            if(gv.get(i).getAccountGVid().getId()== id){
+                gv.get(i).setAccountGVid(null);
+            }
+        }
+        
+        for(int i=0; i< gv.size();i++){
+            if(sv.get(i).getAccountSVid().getId()== id){
+                sv.get(i).setAccountSVid(null);
+            }
+        }
+        
         return this.accountRepository.deleteAccount(id);
     }
 }

@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
                 acc.getUsername(), acc.getPassword(), authorities);
     }
 
+    @Override
+    public Account getUserByUn(String username) {
+         return this.userRepo.getAccountByUsername(username);
+    }
+
+    @Override
+    public boolean authUser(String username, String password) {
+        return this.userRepo.authUser(username, password);
+    }
+
 }
