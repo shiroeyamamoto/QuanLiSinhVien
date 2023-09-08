@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.repository.HocReponsitory;
@@ -12,15 +13,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 /**
  *
  * @author anhkh
  */
 @Service
 public class HocServiceImpl implements HocService {
+
     @Autowired
-    private  HocReponsitory hocRepon;
+    private HocReponsitory hocRepon;
 
     @Override
     public List<Hoc> getListHoc() {
@@ -32,6 +33,9 @@ public class HocServiceImpl implements HocService {
         return this.hocRepon.getMonHocByStu(sinhVienId);
     }
 
-    
+    @Override
+    public List<BangDiem> getDiemBySinhVien(int sinhVienId, List<MonHoc> danhSachMonHoc) {
+       return this.hocRepon.getDiemBySinhVien(sinhVienId, danhSachMonHoc);
+  }
 
 }

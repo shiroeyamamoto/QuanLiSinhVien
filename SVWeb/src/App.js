@@ -22,6 +22,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/monhoc" element={<MonHoc/>} />
           <Route path="/forum" element={<Forum />} />
         </Routes>
         <Footer />

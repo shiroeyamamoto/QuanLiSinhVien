@@ -55,8 +55,6 @@ public class Hoc implements Serializable {
     
     @JoinColumn(name = "sinhvienHOC_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-      
-
     private SinhVien sinhvienHOCid;
 
     public Hoc() {
