@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.repository.HocReponsitory;
@@ -30,6 +31,11 @@ public class HocServiceImpl implements HocService {
     @Override
     public List<MonHoc> getMonHocByStu(int sinhVienId) {
         return this.hocRepon.getMonHocByStu(sinhVienId);
+    }
+
+    @Override
+    public List<BangDiem> getDiemBySinhVien(int sinhVienId, List<MonHoc> danhSachMonHoc) {
+        return this.hocRepon.getDiemBySinhVien(sinhVienId, danhSachMonHoc);
     }
 
     

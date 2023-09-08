@@ -4,12 +4,14 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,13 +56,21 @@ public class BangDiem implements Serializable {
     private float diemCuoiki;
     @Column(name = "status")
     private Short status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bangdiemId")
+    
+    
+    
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "bangdiemId")
+    @JsonIgnore
     private Set<OtherScore> otherScoreSet;
+    
     @JoinColumn(name = "monhocScore_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+        @JsonIgnore
     private MonHoc monhocScoreid;
+    
     @JoinColumn(name = "sinhvienScore_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+        @JsonIgnore
     private SinhVien sinhvienScoreid;
 
     public BangDiem() {

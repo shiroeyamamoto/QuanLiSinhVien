@@ -1,5 +1,6 @@
 package com.fatscompany.repository.impl;
 
+import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.repository.HocReponsitory;
@@ -24,7 +25,7 @@ public class HocReponsitoryImpl implements HocReponsitory {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    
+
     @Override
     public List<Hoc> getListHoc() {
         Session s = this.factory.getObject().getCurrentSession();
@@ -47,7 +48,7 @@ public class HocReponsitoryImpl implements HocReponsitory {
             List<MonHoc> lMh = new ArrayList<>();
             for (Hoc hoc : danhSachHoc) {
                 MonHoc monHoc = hoc.getMonhocHOCid();
-             lMh.add(monHoc);
+                lMh.add(monHoc);
             }
 
             return lMh; // Trả về danh sách Hoc (có thể trống nếu không tìm thấy)
@@ -59,4 +60,28 @@ public class HocReponsitoryImpl implements HocReponsitory {
         }
     }
 
+    @Override
+    public List<BangDiem> getDiemBySinhVien(int sinhVienId, List<MonHoc> danhSachMonHoc) {
+        try {
+            Session s = this.factory.getObject().getCurrentSession();
+
+            // Truy vấn điểm của sinh viên dựa trên danh sách môn học và sinh viên ID
+            String hql = "SELECT DISTINCT d FROM BangDiem d JOIN FETCH d.sinhvienScoreid s WHERE s.id = :sinhVienId AND d.monhocScoreid IN :danhSachMonHoc";
+            Query<BangDiem> query = s.createQuery(hql, BangDiem.class);
+            query.setParameter("sinhVienId", sinhVienId);
+            query.setParameter("danhSachMonHoc", danhSachMonHoc);
+
+            List<BangDiem> danhSachDiem = query.getResultList();
+
+            return danhSachDiem;
+
+        } catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ ghi log
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi trong quá trình truy vấn danh sách điểm.", e);
+        }
+    }
+
 }
+
+

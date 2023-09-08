@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,7 @@ public class OtherScore implements Serializable {
     @Column(name = "diem")
     private Float diem;
     @JoinColumn(name = "bangdiem_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private BangDiem bangdiemId;
 
     public OtherScore() {
@@ -99,5 +100,5 @@ public class OtherScore implements Serializable {
     public String toString() {
         return "com.fatscompany.pojo.OtherScore[ id=" + id + " ]";
     }
-    
+
 }

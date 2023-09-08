@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service;
 
+import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
 import java.util.List;
@@ -16,4 +17,5 @@ import java.util.Map;
 public interface HocService {
     public List<Hoc> getListHoc();
 public List<MonHoc> getMonHocByStu(int sinhVienId);
+ public List<BangDiem> getDiemBySinhVien(int sinhVienId, List<MonHoc> danhSachMonHoc);
 }
