@@ -136,7 +136,6 @@ public class MonHocResponsitoryImpl implements MonhocResponsitory {
     public List<MonHoc> getListMonHocNone() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("FROM MonHoc");
-        
         return q.getResultList();
     }
     

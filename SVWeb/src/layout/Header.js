@@ -46,7 +46,7 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Link className='nav-link' to="/">Trang chủ</Link>
                         <Link className='nav-link' to="/forum">Diễn đàn</Link>
-                        
+                        <Link className='nav-link' to="/monhoc">Danh Sách Môn Học</Link>
                         {user ===null ? <Link className='nav-link text-danger' to="/login">Đăng Nhập</Link>:<>
                             <Link className='nav-link text-danger' to="/">Chào  {user.username}</Link>
                             <Button variant='danger' onClick={logout}>Đăng xuất</Button> 

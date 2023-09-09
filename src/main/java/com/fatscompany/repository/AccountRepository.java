@@ -28,4 +28,5 @@ public interface AccountRepository {
     Account getAccountById(int id);
     
     boolean deleteAccount(int id);
+        public Account getAccountByUserCurrent(String userName);
 }

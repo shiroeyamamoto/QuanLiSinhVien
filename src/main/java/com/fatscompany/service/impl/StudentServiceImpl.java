@@ -5,6 +5,7 @@
 package com.fatscompany.service.impl;
 
 import com.fatscompany.pojo.Hoc;
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
 import com.fatscompany.service.StudentService;
@@ -17,11 +18,11 @@ import org.springframework.stereotype.Service;
  * @author khang
  */
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository StudentRepo;
-    
+
     @Override
     public List<SinhVien> getSinhVien() {
         return this.StudentRepo.getSinhVien();
@@ -42,4 +43,8 @@ public class StudentServiceImpl implements StudentService{
         return this.StudentRepo.getListSinhVienByHocId(hoc);
     }
     
+    public SinhVien getSinhVienByAccountId(Account account) {
+        return this.StudentRepo.getSinhVienByAccountId(account);
+    }
+
 }

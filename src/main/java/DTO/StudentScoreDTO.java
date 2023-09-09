@@ -4,6 +4,8 @@
  */
 package DTO;
 
+import java.util.List;
+
 /**
  *
  * @author anhkh
@@ -11,16 +13,34 @@ package DTO;
 public class StudentScoreDTO {
 
     private int studentId;
+    private int bangDiemid;
     private int subjectCode;
     private String subjectName;
     private float diemGiuaki;
     private float diemCuoiKi;
+    private List<Float> otherScore;
 
     public StudentScoreDTO() {
     }
 
     public int getStudentId() {
         return studentId;
+    }
+
+    public int getBangDiemid() {
+        return bangDiemid;
+    }
+
+    public void setBangDiemid(int bangDiemid) {
+        this.bangDiemid = bangDiemid;
+    }
+
+    public List<Float> getOtherScore() {
+        return otherScore;
+    }
+
+    public void setOtherScore(List<Float> otherScore) {
+        this.otherScore = otherScore;
     }
 
     public void setStudentId(int studentId) {

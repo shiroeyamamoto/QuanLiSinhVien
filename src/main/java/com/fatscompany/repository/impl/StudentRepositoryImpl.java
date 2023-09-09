@@ -6,6 +6,7 @@ package com.fatscompany.repository.impl;
 
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.MonHoc;
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
 import com.fatscompany.service.HocService;
@@ -96,4 +97,20 @@ public class StudentRepositoryImpl implements StudentRepository {
         }
 
     }
+    public SinhVien getSinhVienByAccountId(Account account) {
+        Session session = this.factory.getObject().getCurrentSession();
+
+        String hql = "FROM SinhVien s WHERE s.accountSVid.id = :accountId";
+        Query query = session.createQuery(hql);
+        query.setParameter("accountId", account.getId()); // Truyền vào account.id thay vì account
+
+        List<SinhVien> results = query.getResultList();
+
+        if (results != null && !results.isEmpty()) {
+            return results.get(0);
+        } else {
+            return null;
+        }
+    }
+
 }
