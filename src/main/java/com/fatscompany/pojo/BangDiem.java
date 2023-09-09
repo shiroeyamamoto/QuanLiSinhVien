@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -55,12 +56,15 @@ public class BangDiem implements Serializable {
     @Column(name = "status")
     private Short status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bangdiemId")
+    @JsonIgnore
     private Set<OtherScore> otherScoreSet;
     @JoinColumn(name = "monhocScore_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private MonHoc monhocScoreid;
     @JoinColumn(name = "sinhvienScore_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private SinhVien sinhvienScoreid;
 
     public BangDiem() {

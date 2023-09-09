@@ -1,6 +1,7 @@
 com\fatscompany\configs\TilesConfig.class
 com\fatscompany\service\UserService.class
 com\fatscompany\pojo\BaiViet.class
+com\fatscompany\repository\impl\BangDiemRepositoryImpl.class
 com\fatscompany\service\DayService.class
 com\fatscompany\pojo\BangDiem.class
 com\fatscompany\repository\LopRepository.class
@@ -17,7 +18,6 @@ com\fatscompany\pojo\GiangVien.class
 com\fatscompany\service\impl\StudentServiceImpl.class
 com\fatscompany\pojo\MonHoc.class
 com\fatscompany\configs\HibernateConfig.class
-com\fatscompany\controllers\ApiHocController.class
 com\fatscompany\repository\impl\TeacherRepositoryImpl.class
 com\fatscompany\controllers\MonHocController.class
 com\fatscompany\service\HocService.class
@@ -31,7 +31,6 @@ com\fatscompany\pojo\Comment.class
 com\fatscompany\pojo\Hoc.class
 com\fatscompany\repository\impl\AccountRepositoryImpl.class
 com\fatscompany\repository\DayResponsitory.class
-com\fatscompany\configs\JwtSecurityConfig.class
 com\fatscompany\service\impl\TeacherServiceImpl.class
 com\fatscompany\repository\UserRepository.class
 com\fatscompany\pojo\Day.class
@@ -45,7 +44,6 @@ com\fatscompany\repository\StudentRepository.class
 com\fatscompany\service\MonHocService.class
 com\fatscompany\controllers\AccountController.class
 com\fatscompany\pojo\Lop.class
-com\fatscompany\pojo\OtherScore.class
 com\fatscompany\repository\AccountRepository.class
 com\fatscompany\controllers\ApiAccountController.class
 com\fatscompany\repository\HocReponsitory.class
@@ -55,10 +53,10 @@ com\fatscompany\controllers\GiangVienController.class
 com\fatscompany\service\impl\AccountServiceImpl.class
 com\fatscompany\service\impl\MonHocServiceImpl.class
 com\fatscompany\service\LopService.class
-.netbeans_automatic_build
 com\fatscompany\repository\impl\HocReponsitoryImpl.class
 com\fatscompany\service\TeacherService.class
 com\fatscompany\controllers\ApiMonHocController.class
+com\fatscompany\controllers\ApiSinhVienController.class
 com\fatscompany\repository\impl\LopRepositoryImpl.class
 com\fatscompany\repository\impl\StatsRepositoryImpl.class
 com\fatscompany\service\impl\LopServieceImpl.class

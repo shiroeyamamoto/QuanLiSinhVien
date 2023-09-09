@@ -79,6 +79,31 @@ public class HocReponsitoryImpl implements HocReponsitory {
         }
     }
 
+    @Override
+    public List<Hoc>  getHocByMonHocId(int id) {
+        try {
+            Session s = this.factory.getObject().getCurrentSession();
+
+            List<Hoc> getListHoc = getListHoc();
+            
+            List<Hoc> updateListHoc = new ArrayList<>();
+            
+            for(int i=0; i< getListHoc.size();i++){
+                if(getListHoc.get(i).getMonhocHOCid().getId().equals(id))
+                    updateListHoc.add(getListHoc.get(i));
+            }
+            
+            return updateListHoc;
+
+        } catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ ghi log
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi trong quá trình truy vấn danh sách điểm.", e);
+        }
+    
+    }
+
+    @Override
     public List<OtherScore> getListOScroceByBangDiem(int bangDiemid) {
         Session s = this.factory.getObject().getCurrentSession();
         String hql = "FROM OtherScore o WHERE o.bangdiemId.id = :bangDiemid"; // Sử dụng alias 'o' thay vì 'h'

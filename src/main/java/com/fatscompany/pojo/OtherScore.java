@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -42,6 +43,7 @@ public class OtherScore implements Serializable {
     private Float diem;
     @JoinColumn(name = "bangdiem_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private BangDiem bangdiemId;
 
     public OtherScore() {

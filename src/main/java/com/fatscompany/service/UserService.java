@@ -5,6 +5,7 @@
 package com.fatscompany.service;
 
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.Hoc;
 import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

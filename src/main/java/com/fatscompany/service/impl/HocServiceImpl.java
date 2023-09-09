@@ -44,4 +44,10 @@ public class HocServiceImpl implements HocService {
         return this.hocRepon.getListOScroceByBangDiem(bangDiemid);
     }
 
+    @Override
+    public List<Hoc>  getHocByMonHocId(int id) {
+        return this.hocRepon.getHocByMonHocId(id);
+    }
+
+
 }

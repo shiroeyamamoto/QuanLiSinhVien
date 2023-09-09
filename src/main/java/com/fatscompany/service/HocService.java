@@ -22,5 +22,7 @@ public interface HocService {
     public List<MonHoc> getMonHocByStu(int sinhVienId);
 
     public List<BangDiem> getDiemBySinhVien(int sinhVienId, List<MonHoc> danhSachMonHoc);
+    
+    public List<Hoc>  getHocByMonHocId(int id);
      public List<OtherScore> getListOScroceByBangDiem(int bangDiemid);
 }

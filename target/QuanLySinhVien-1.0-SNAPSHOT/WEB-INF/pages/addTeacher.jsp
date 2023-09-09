@@ -31,7 +31,7 @@
                          path="accountGVid">
                 <c:forEach items="${selectAccount}" var="c">
                     <c:choose>
-                        <c:when test="${c.role eq 'TEACHER'}">
+                        <c:when test="${c.role eq 'ROLE_,TEACHER'}">
                             <c:if test="${c.id == addTea.accountGVid.id}">
                                 <option value="${c.id}" selected>${c.username}</option>
                             </c:if>

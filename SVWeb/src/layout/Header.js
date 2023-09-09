@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <>
-            <Navbar bg="primary" variant="dark" expand="lg">
+            <Navbar bg="primary" variant="dark" expand="lg" className='py-3'>
                 <Container>
                     <Navbar.Brand href="/">FatsCompany</Navbar.Brand>
                     <Nav className="me-auto">
@@ -64,7 +64,7 @@ const Header = () => {
                                 />
                             </Col>
                             <Col xs="auto">
-                                <Button type="submit">Tìm</Button>
+                                <Button type="submit" className='btn-danger'>Tìm</Button>
                             </Col>
                         </Row>
                     </Form>

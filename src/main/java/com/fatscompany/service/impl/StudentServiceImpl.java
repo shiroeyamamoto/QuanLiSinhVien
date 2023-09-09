@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
@@ -33,6 +34,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public SinhVien getSinhVienById(int id) {
+        return this.StudentRepo.getSinhVienById(id);
+    }
+
+    @Override
+    public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) {
+        return this.StudentRepo.getListSinhVienByHocId(hoc);
+    }
+    
     public SinhVien getSinhVienByAccountId(Account account) {
         return this.StudentRepo.getSinhVienByAccountId(account);
     }

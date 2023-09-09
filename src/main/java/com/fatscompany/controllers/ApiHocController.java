@@ -15,6 +15,7 @@ import com.fatscompany.service.AccountService;
 import com.fatscompany.service.HocService;
 import com.fatscompany.service.MonHocService;
 import com.fatscompany.service.StudentService;
+import com.sun.net.httpserver.HttpsConfigurator;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -108,5 +111,5 @@ public class ApiHocController {
        
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
-
 }
+

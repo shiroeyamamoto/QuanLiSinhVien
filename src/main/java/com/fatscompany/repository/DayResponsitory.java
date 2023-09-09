@@ -5,6 +5,7 @@
 package com.fatscompany.repository;
 
 import com.fatscompany.pojo.Day;
+import com.fatscompany.pojo.GiangVien;
 import java.util.List;
 
 /**
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface DayResponsitory {
     public List<Day> getListDay();
+    
+    public List<Day> getDayByTea(GiangVien gv);
 }

@@ -6,6 +6,9 @@ package com.fatscompany.controllers;
 
 import com.fatscompany.components.JwtService;
 import com.fatscompany.pojo.Account;
+import com.fatscompany.pojo.GiangVien;
+import com.fatscompany.service.AccountService;
+import com.fatscompany.service.TeacherService;
 import com.fatscompany.service.UserService;
 import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,10 @@ public class ApiUserController {
     private JwtService jwtService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AccountService accService;
+    @Autowired
+    private TeacherService teacherService;
 
     @PostMapping("/login/")
     @CrossOrigin
@@ -54,8 +61,8 @@ public class ApiUserController {
 //            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
 //            produces = {MediaType.APPLICATION_JSON_VALUE})
 //    @CrossOrigin
-//    public ResponseEntity<User> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-//        User user = this.userService.addUser(params, avatar);
+//    public ResponseEntity<Account> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
+//        Account user = this.userService.(params, avatar);
 //        return new ResponseEntity<>(user, HttpStatus.CREATED);
 //    }
 
@@ -64,5 +71,15 @@ public class ApiUserController {
     public ResponseEntity<Account> details(Principal user) {
         Account u = this.userService.getUserByUn(user.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+    
+    @GetMapping(path = "/current-detail-user/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public ResponseEntity<GiangVien> detailsAccount(Principal user) {
+        Account u = this.userService.getUserByUn(user.getName());
+        
+        GiangVien gv = this.teacherService.getTeacherByAcc(u);
+        
+        return new ResponseEntity<>(gv, HttpStatus.OK);
     }
 }

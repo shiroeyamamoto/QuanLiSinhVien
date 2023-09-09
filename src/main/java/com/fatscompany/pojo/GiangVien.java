@@ -4,6 +4,7 @@
  */
 package com.fatscompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -63,8 +64,10 @@ public class GiangVien implements Serializable {
     private String email;
     @JoinColumn(name = "accountGV_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Account accountGVid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "giangvienId")
+    @JsonIgnore
     private Set<Day> daySet;
 
     public GiangVien() {

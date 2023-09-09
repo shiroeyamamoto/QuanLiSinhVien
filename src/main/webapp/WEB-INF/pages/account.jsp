@@ -59,7 +59,7 @@
 
                     <td style="vertical-align: middle; text-align: center;">
                         <c:choose>
-                            <c:when test="${account.role eq 'TEACHER'}">
+                            <c:when test="${account.role eq 'ROLE_,TEACHER'}">
 
                                 <c:forEach items="${giangvien}" var="gv">
                                     <c:if test="${gv.accountGVid.id eq account.id}">
@@ -68,7 +68,7 @@
                                 </c:forEach>
 
                             </c:when>
-                            <c:when test="${account.role eq 'STUDENT'}">
+                            <c:when test="${account.role eq 'ROLE_,STUDENT'}">
                                 <c:forEach items="${sinhvien}" var="sv">
                                     <c:if test="${sv.accountSVid.id eq account.id}">
                                         ${sv.lastName}
@@ -80,14 +80,14 @@
                     </td>
                     <td style="vertical-align: middle; text-align: center;">
                         <c:choose>
-                            <c:when test="${account.role eq 'TEACHER'}">
+                            <c:when test="${account.role eq 'ROLE_,TEACHER'}">
                                 <c:forEach items="${giangvien}" var="gv">
                                     <c:if test="${gv.accountGVid.id eq account.id}">
                                         ${gv.firstName}
                                     </c:if>
                                 </c:forEach>
                             </c:when>
-                            <c:when test="${account.role eq 'STUDENT'}">
+                            <c:when test="${account.role eq 'ROLE_,STUDENT'}">
                                 <c:forEach items="${sinhvien}" var="sv">
                                     <c:if test="${sv.accountSVid.id eq account.id}">
                                         ${sv.firstName}
@@ -99,14 +99,14 @@
                     </td>
                     <td style="vertical-align: middle; text-align: center;">
                         <c:choose>
-                            <c:when test="${account.role eq 'TEACHER'}">
+                            <c:when test="${account.role eq 'ROLE_,TEACHER'}">
                                 <c:forEach items="${giangvien}" var="gv">
                                     <c:if test="${gv.accountGVid.id eq account.id}">
                                         ${gv.email}
                                     </c:if>
                                 </c:forEach>
                             </c:when>
-                            <c:when test="${account.role eq 'STUDENT'}">
+                            <c:when test="${account.role eq 'ROLE_,STUDENT'}">
                                 <c:forEach items="${sinhvien}" var="sv">
                                     <c:if test="${sv.accountSVid.id eq account.id}">
                                         ${sv.email}

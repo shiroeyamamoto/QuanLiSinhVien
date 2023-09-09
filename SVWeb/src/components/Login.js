@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { Button, Col, Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import Apis, { authApi, endpoints } from "../configs/Apis";
 import cookie from 'react-cookies'
 import { MyUserContext } from "../App";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 
 const Login = () => {
     const [user, dispatch] = useContext(MyUserContext);
@@ -20,7 +20,6 @@ const Login = () => {
                     "username": username,
                     "password": password
                 });
-                //console.info(res.data);
                 cookie.save("token", res.data);
 
                 let {data} = await authApi().get(endpoints['current-user']);
