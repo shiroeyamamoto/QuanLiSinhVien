@@ -6,6 +6,7 @@ package com.fatscompany.repository;
 
 import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.MonHoc;
+import com.fatscompany.pojo.OtherScore;
 import com.fatscompany.pojo.SinhVien;
 import java.util.List;
 
@@ -18,5 +19,11 @@ public interface BangDiemRepository {
     List<BangDiem> getBangDiem();
     
     public BangDiem getBangDiemForSinhVien(int monHocId, int sinhVienId);
+    
+    public List<OtherScore> getOtherScore();
+    
+    public BangDiem getBangDiemById(int id);
+    
+    public List<OtherScore> getOrtherScoreByBangDiemId(int id);
     
 }

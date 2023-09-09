@@ -15,7 +15,8 @@ export const endpoints = {
     "detailsSinhvien":(monhocId) => `${SERVER_CONTEXT}/api/sinhviens/list-sinhvien-hoc-monhoc/${monhocId}/`,
     "detailsSinhvienBangDiem":(monhocId, sinhvienId) => `${SERVER_CONTEXT}/api/sinhviens/list-sinhvien-hoc-monhoc/${monhocId}/sinhvien/${sinhvienId}/`,
     "sinhvienMonHoc":(sinhvienId) => `${SERVER_CONTEXT}/api/sinhviens/${sinhvienId}/`,
-    "detailMonHoc": `${SERVER_CONTEXT}/api/studenScores/listscore`
+    "detailMonHoc": `${SERVER_CONTEXT}/api/studenScores/listscore`,
+    "detailOtherScoreSinhVien":(bangdiemId) => `${SERVER_CONTEXT}/api/bangdiem/${bangdiemId}/otherscore/`
 }
 
 export const authApi = () => {
