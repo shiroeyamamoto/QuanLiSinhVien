@@ -6,6 +6,7 @@ package com.fatscompany.repository.impl;
 
 import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.MonHoc;
+import com.fatscompany.pojo.OtherScore;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.BangDiemRepository;
 import com.fatscompany.service.MonHocService;
@@ -42,6 +43,22 @@ public class BangDiemRepositoryImpl implements BangDiemRepository{
 
         return q.getResultList();
     }
+    
+    @Override
+    public List<OtherScore> getOtherScore() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNamedQuery("OtherScore.findAll");
+
+        return q.getResultList();
+    }
+    
+    @Override
+    public BangDiem getBangDiemById(int id) {
+
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(BangDiem.class, id);
+
+    }
 
     @Override
     public BangDiem getBangDiemForSinhVien(int monHocId, int sinhVienId) {
@@ -65,6 +82,31 @@ public class BangDiemRepositoryImpl implements BangDiemRepository{
             // Xử lý lỗi ở đây, ví dụ ghi log
             e.printStackTrace();
             throw new RuntimeException("Lỗi trong quá trình truy vấn danh sách sinh vien hoc.", e);
+        }
+    }
+
+    @Override
+    public List<OtherScore> getOrtherScoreByBangDiemId(int id) {
+        try {
+            Session s = this.factory.getObject().getCurrentSession();
+
+            BangDiem bangDiem = this.getBangDiemById(id);
+
+            List<OtherScore> getListOtherScore = getOtherScore();
+
+            List<OtherScore> updateOtherScore = new ArrayList<>();
+            
+            for (int i = 0; i < getListOtherScore.size(); i++) {
+                if(getListOtherScore.get(i).getBangdiemId().equals(bangDiem)){
+                    updateOtherScore.add(getListOtherScore.get(i));
+                }
+            }
+            return updateOtherScore;
+
+        } catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ ghi log
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi getOrtherScoreByBangDiemId.", e);
         }
     }
     

@@ -5,6 +5,7 @@
 package com.fatscompany.service.impl;
 
 import com.fatscompany.pojo.BangDiem;
+import com.fatscompany.pojo.OtherScore;
 import com.fatscompany.repository.BangDiemRepository;
 import com.fatscompany.service.BangDiemService;
 import java.util.List;
@@ -30,5 +31,16 @@ public class BangDiemServiceImpl implements BangDiemService{
     public BangDiem getBangDiemForSinhVien(int monHocId, int sinhVienId) {
         return this.bangDiemRepo.getBangDiemForSinhVien(monHocId, sinhVienId);
     }
+
+    @Override
+    public BangDiem getBangDiemById(int id) {
+        return this.bangDiemRepo.getBangDiemById(id);
+    }
+
+    @Override
+    public List<OtherScore> getOrtherScoreByBangDiemId(int id) {
+        return this.bangDiemRepo.getOrtherScoreByBangDiemId(id);
+    }
+    
     
 }

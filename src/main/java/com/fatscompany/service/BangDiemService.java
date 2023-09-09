@@ -5,6 +5,7 @@
 package com.fatscompany.service;
 
 import com.fatscompany.pojo.BangDiem;
+import com.fatscompany.pojo.OtherScore;
 import java.util.List;
 
 /**
@@ -15,4 +16,8 @@ public interface BangDiemService {
     List<BangDiem> getBangDiem();
     
     public BangDiem getBangDiemForSinhVien(int monHocId, int sinhVienId);
+    
+    public BangDiem getBangDiemById(int id);
+    
+    public List<OtherScore> getOrtherScoreByBangDiemId(int id);
 }

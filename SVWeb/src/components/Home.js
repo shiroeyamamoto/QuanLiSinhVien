@@ -32,31 +32,45 @@ const Home = () => {
     if (data === null)
         return <MySpinner />
 
+
+    console.info(user);
     return (
         <div className="container">
             <div class="d-flex align-items-center">
-                {user === null ? <h2 class="mb-3 mt-3">Chào mừng vị khách vãng lai! 👋</h2> : <>
-                    <h2 class="mb-3 mt-3">
-                        Chào mừng quay trở lại, {user.username}! 👋
-                    </h2>
-                </>}
-            </div>
-            <Row>
-                {data.map(c => {
-                    let url = `/monhocs/${c.id}`;
+                {user === null ?
+                    <div>
+                        <h2 class="mb-3 mt-3">Chào mừng vị khách vãng lai! 👋</h2>
+                        <h2 class="mb-3 mt-3">Bạn hiện không có quyền gì ở đây!</h2>
+                    </div>
+                    : user.role != "ROLE_,TEACHER" ?
+                        <div>
+                            <h2 class="mb-3 mt-3">Chào mừng trở lại {user.username}! 👋</h2>
+                            <h2 class="mb-3 mt-3">Bạn hiện không có quyền gì ở đây!</h2>
+                        </div>
+                        :
+                        <div>
+                            <h2 class="mb-3 mt-3">Chào mừng trở lại {user.username}! 👋</h2>
+                            <Row>
+                                {data.map(c => {
+                                    let url = `/monhocs/${c.id}`;
 
-                    return <Col xs={12} md={3} className="mt-1">
-                        <Link to={url} className="btn">
-                            <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src="https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png" />
-                                <Card.Body>
-                                    <Card.Title>{c.id} - {c.name}</Card.Title>
-                                </Card.Body>
-                            </Card>
-                        </Link>
-                    </Col>
-                })}
-            </Row>
+                                    return <Col xs={12} md={3} className="mt-1">
+                                        <Link to={url} className="btn">
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Img variant="top" src="https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png" />
+                                                <Card.Body>
+                                                    <Card.Title>{c.id} - {c.name}</Card.Title>
+                                                </Card.Body>
+                                            </Card>
+                                        </Link>
+                                    </Col>
+                                })}
+                            </Row>
+
+                        </div>
+                }
+            </div>
+
         </div>
     );
 }

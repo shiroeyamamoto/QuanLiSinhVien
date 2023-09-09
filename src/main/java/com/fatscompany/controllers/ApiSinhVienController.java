@@ -6,6 +6,7 @@ package com.fatscompany.controllers;
 
 import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
+import com.fatscompany.pojo.OtherScore;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.service.BangDiemService;
 import com.fatscompany.service.HocService;
@@ -67,5 +68,14 @@ public class ApiSinhVienController {
         BangDiem bangDiem = this.bangDiemService.getBangDiemForSinhVien(mhId, svId);
 
         return new ResponseEntity<>(bangDiem, HttpStatus.OK);
+    }
+    @RequestMapping("/bangdiem/{bangdiemId}/otherscore/")
+    @CrossOrigin
+    public ResponseEntity<List<OtherScore>> SinhVienBangDiemOther(
+            @PathVariable(value = "bangdiemId") int bdId) {
+
+        List<OtherScore> list = this.bangDiemService.getOrtherScoreByBangDiemId(bdId);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
