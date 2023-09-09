@@ -76,12 +76,12 @@ public class TeacherRepositoryImpl implements TeacherRepository {
         if (account == null) {
             return null;
         }
-        Query q = s.createNamedQuery("GiangVien.findAll");
 
-        List<GiangVien> listGv = q.getResultList();
         
+        List<GiangVien> listGv = getGiangVien();
+            
         for(int i=0; i < listGv.size(); i++){
-            if(listGv.get(i).getAccountGVid()==account){
+            if(listGv.get(i).getAccountGVid().equals(account)){
                return listGv.get(i);}
         }
         

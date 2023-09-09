@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service;
 
+import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.SinhVien;
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface StudentService {
     List<SinhVien> getSinhVien();
     
     boolean addOrUpdateStudent(SinhVien sv);
+    
+    public SinhVien getSinhVienById(int id);
+    
+    public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) ;
 }

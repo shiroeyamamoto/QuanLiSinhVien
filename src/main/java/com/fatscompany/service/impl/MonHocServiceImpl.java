@@ -1,5 +1,6 @@
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.Day;
 import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.repository.MonhocResponsitory;
 import com.fatscompany.service.MonHocService;
@@ -60,4 +61,10 @@ public class MonHocServiceImpl implements MonHocService {
     public List<MonHoc> getListMonHocNone() {
  return this.monHocRepository.getListMonHocNone();
     }
+
+    @Override
+    public List<MonHoc> getListMonHocByListDay(List<Day> listDay) {
+        return this.monHocRepository.getListMonHocByListDay(listDay);
+    }
+    
 }

@@ -4,6 +4,7 @@
  */
 package com.fatscompany.service.impl;
 
+import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
 import com.fatscompany.service.StudentService;
@@ -29,6 +30,16 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public boolean addOrUpdateStudent(SinhVien sv) {
         return this.StudentRepo.addOrUpdateStudent(sv);
+    }
+
+    @Override
+    public SinhVien getSinhVienById(int id) {
+        return this.StudentRepo.getSinhVienById(id);
+    }
+
+    @Override
+    public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) {
+        return this.StudentRepo.getListSinhVienByHocId(hoc);
     }
     
 }

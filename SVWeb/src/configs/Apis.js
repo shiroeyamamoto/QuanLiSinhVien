@@ -9,7 +9,12 @@ export const endpoints = {
     "days": `${SERVER_CONTEXT}/api/days`,
     "login": `${SERVER_CONTEXT}/api/login/`,
     "current-user": `${SERVER_CONTEXT}/api/current-user/`,
-    "current-detail-user": `${SERVER_CONTEXT}/api/current-detail-user/`
+    "current-detail-user": `${SERVER_CONTEXT}/api/current-detail-user/`,
+    "monhoc-giangvien": `${SERVER_CONTEXT}/api/monhoc-giangvien/`,
+    "detailsMonhoc":(monhocId) => `${SERVER_CONTEXT}/api/monhocs/${monhocId}/`,
+    "detailsSinhvien":(monhocId) => `${SERVER_CONTEXT}/api/sinhviens/list-sinhvien-hoc-monhoc/${monhocId}/`,
+    "detailsSinhvienBangDiem":(monhocId, sinhvienId) => `${SERVER_CONTEXT}/api/sinhviens/list-sinhvien-hoc-monhoc/${monhocId}/sinhvien/${sinhvienId}/`,
+    "sinhvienMonHoc":(sinhvienId) => `${SERVER_CONTEXT}/api/sinhviens/${sinhvienId}/`
 }
 
 export const authApi = () => {

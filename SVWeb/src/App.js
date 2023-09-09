@@ -8,6 +8,9 @@ import Login from "./components/Login";
 import Forum from "./components/Forum";
 import { createContext, useReducer } from "react";
 import MyUserReducer from "./reducers/MyUserReducer";
+import MonHoc from "./components/MonHoc";
+import MonHocGiangVien from "./components/MonHocGiangVien";
+import NhapDiemSinhVien from "./components/NhapDiemSinhVien";
 
 export const MyUserContext = createContext();
 
@@ -26,7 +29,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/monhoc" element={<MonHoc/>} />
+          <Route path="/monhocGV" element={<MonHocGiangVien/>} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/monhocs/:monhocId" element={<MonHocGiangVien />} />
+          <Route path="/monhocs/:monhocId/nhapdiemsinhvien/:sinhvienId" element={<NhapDiemSinhVien />} />
         </Routes>
         <Footer />
       </BrowserRouter>

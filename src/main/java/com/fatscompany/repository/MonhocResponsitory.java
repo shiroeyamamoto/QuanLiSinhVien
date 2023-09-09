@@ -4,6 +4,7 @@
  */
 package com.fatscompany.repository;
 
+import com.fatscompany.pojo.Day;
 import com.fatscompany.pojo.MonHoc;
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,6 @@ public interface MonhocResponsitory {
     MonHoc getMonHocById(int id);
 
     boolean deleteMonHoc(int id);
+    
+    public List<MonHoc> getListMonHocByListDay(List<Day> listDay);
 }

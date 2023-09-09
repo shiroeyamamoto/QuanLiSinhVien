@@ -5,6 +5,7 @@
 package com.fatscompany.service.impl;
 
 import com.fatscompany.pojo.Day;
+import com.fatscompany.pojo.GiangVien;
 import com.fatscompany.repository.DayResponsitory;
 import com.fatscompany.service.DayService;
 import java.util.List;
@@ -24,6 +25,11 @@ public class DayServiceImpl implements DayService{
     @Override
     public List<Day> getListDay() {
         return this.dayRepo.getListDay();
+    }
+
+    @Override
+    public List<Day> getDayByTea(GiangVien gv) {
+        return this.dayRepo.getDayByTea(gv);
     }
     
 }

@@ -1,28 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Card, Col, Row } from "react-bootstrap";
-import Apis, { endpoints } from "../configs/Apis";
+import { Card, Col, Row, Spinner } from "react-bootstrap";
+import Apis, { authApi, endpoints } from "../configs/Apis";
 import { Link, useSearchParams } from "react-router-dom";
 import { MyUserContext } from "../App";
+import MySpinner from "../layout/MySpinner";
 
 const Home = () => {
     //const [q] = useSearchParams();
     const [user, dispatch] = useContext(MyUserContext);
-
-    const [userData, setUserData] = useState(null);
-
-    const loadUserData = async () => {
-        let res = await Apis.get(endpoints['current-detail-user']);
-
-        setUserData(res.data)
-
-    }
-
+    const [data, setData] = useState([]);
     useEffect(() => {
-        loadUserData();
-        
-        console.info(userData);
-    }, []); // [] để chỉ chạy một lần khi component được mount
-    
+        const fetchData = async () => {
+            try {
+                // Gọi API danh sách môn học bằng token xác thực
+                const { data } = await authApi().get(endpoints['monhoc-giangvien']);
+
+                // Xử lý dữ liệu nếu nó không phải là null
+                if (data) {
+                    setData(data);
+                } else {
+                    console.error('Dữ liệu là null hoặc trống');
+                }
+            } catch (error) {
+                console.error('Lỗi khi truy xuất dữ liệu:', error);
+            }
+        };
+        if (user) {
+            fetchData();
+        }
+    }, [user]);
+    if (data === null)
+        return <MySpinner />
+
     return (
         <div className="container">
             <div class="d-flex align-items-center">
@@ -31,23 +40,23 @@ const Home = () => {
                         Chào mừng quay trở lại, {user.username}! 👋
                     </h2>
                 </>}
-                <div class="header-actions-container ml-auto" data-region="header-actions-container">
-                </div>
             </div>
+            <Row>
+                {data.map(c => {
+                    let url = `/monhocs/${c.id}`;
 
-
-            <Link to="">
-                <Row>
-                    <Col xs={12} md={3} className="mt-1">
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png" />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                            </Card.Body>
-                        </Card>
+                    return <Col xs={12} md={3} className="mt-1">
+                        <Link to={url} className="btn">
+                            <Card style={{ width: '18rem' }}>
+                                <Card.Img variant="top" src="https://res.cloudinary.com/dfv13jmbq/image/upload/v1694010996/qyebfascjyrybwbq7a8i.png" />
+                                <Card.Body>
+                                    <Card.Title>{c.id} - {c.name}</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </Link>
                     </Col>
-                </Row>
-            </Link>
+                })}
+            </Row>
         </div>
     );
 }

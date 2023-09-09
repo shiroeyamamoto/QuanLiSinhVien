@@ -4,6 +4,7 @@
  */
 package com.fatscompany.repository.impl;
 
+import com.fatscompany.pojo.Day;
 import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.repository.MonhocResponsitory;
 import java.util.ArrayList;
@@ -137,5 +138,27 @@ public class MonHocResponsitoryImpl implements MonhocResponsitory {
         Query q = s.createQuery("FROM MonHoc");
         
         return q.getResultList();
+    }
+    
+    @Override
+    public List<MonHoc> getListMonHocByListDay(List<Day> listDay) {
+        Session s = this.factory.getObject().getCurrentSession();
+        
+        List<MonHoc> listMonHoc = getListMonHocNone();
+        
+        List<MonHoc> updateListMonHoc = new ArrayList<>();
+        
+        if(listDay==null)
+            return null;
+        
+        for(int i=0; i< listDay.size();i++){
+            for(int j = 0; j < listMonHoc.size();j++){
+                if(listDay.get(i).getMonhocId().equals(listMonHoc.get(j)))
+                    updateListMonHoc.add(listMonHoc.get(j));
+            }
+        }
+        if(updateListMonHoc==null)
+            return null;
+        return updateListMonHoc;
     }
 }
