@@ -41,6 +41,7 @@ const MonHoc = () => {
               <th>Tên Môn Học</th>
               <th>Điểm Giữa Kì</th>
               <th>Điểm Cuối Kì</th>
+              <th>Điểm Khác</th> {/* Thêm cột cho điểm khác */}
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,11 @@ const MonHoc = () => {
                 <td>{item.subjectName}</td>
                 <td>{item.diemGiuaki}</td>
                 <td>{item.diemCuoiKi}</td>
+                <td>
+                  {item.otherScore.map((score, index) => (
+                    <div key={index}>Điểm {index + 1}: {score}</div>
+                  ))}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -56,6 +62,7 @@ const MonHoc = () => {
       </Container>
     </div>
   );
+  
 };
 
 export default MonHoc;
