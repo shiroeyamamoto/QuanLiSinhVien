@@ -23,7 +23,7 @@ public interface AccountService {
     boolean addOrUpdateAccount(Account acc);
 
     int countAccount();
-    
+    Account getAcooutByUserName(String userName);
     List<Account> selectAllAccount();
     
     Account getAccountById(int id);

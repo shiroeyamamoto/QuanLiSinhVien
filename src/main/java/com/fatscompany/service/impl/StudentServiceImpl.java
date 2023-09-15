@@ -42,9 +42,14 @@ public class StudentServiceImpl implements StudentService {
     public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) {
         return this.StudentRepo.getListSinhVienByHocId(hoc);
     }
-    
+
     public SinhVien getSinhVienByAccountId(Account account) {
         return this.StudentRepo.getSinhVienByAccountId(account);
+    }
+
+    @Override
+    public SinhVien createSinhVien(String firstName, String lastName, String email, String userNameAccount) {
+        return this.StudentRepo.createSinhVien(firstName, lastName, email, userNameAccount);
     }
 
 }

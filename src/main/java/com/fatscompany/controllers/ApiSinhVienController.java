@@ -4,6 +4,7 @@
  */
 package com.fatscompany.controllers;
 
+import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.BangDiem;
 import com.fatscompany.pojo.Hoc;
 import com.fatscompany.pojo.OtherScore;
@@ -18,6 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,6 +72,7 @@ public class ApiSinhVienController {
 
         return new ResponseEntity<>(bangDiem, HttpStatus.OK);
     }
+
     @RequestMapping("/bangdiem/{bangdiemId}/otherscore/")
     @CrossOrigin
     public ResponseEntity<List<OtherScore>> SinhVienBangDiemOther(
@@ -78,4 +82,27 @@ public class ApiSinhVienController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createSinhVien(@RequestBody SinhVien sinhVienRequest) {
+        try {
+            // Gọi hàm tạo SinhVien từ SinhVienService
+            SinhVien sinhVien = studentService.createSinhVien(
+                    sinhVienRequest.getFirstName(),
+                    sinhVienRequest.getLastName(),
+                    sinhVienRequest.getEmail(),
+                    sinhVienRequest.getUserNameAccount()
+            );
+
+            // Trả về SinhVien đã tạo thành công
+            return new ResponseEntity<>(sinhVien, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            // Xử lý lỗi nếu email không hợp lệ hoặc trùng
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            // Xử lý lỗi khác (ví dụ: lỗi Hibernate)
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

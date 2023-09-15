@@ -17,7 +17,7 @@ public interface StudentRepository {
     List<SinhVien> getSinhVien();
     public SinhVien getSinhVienByAccountId(Account account);
     boolean addOrUpdateStudent(SinhVien sv);
-    
+    public SinhVien createSinhVien(String firstName, String lastName, String email, String userNameAccount);
     public SinhVien getSinhVienById(int id);
     
     public List<SinhVien> getListSinhVienByHocId(List<Hoc> id);

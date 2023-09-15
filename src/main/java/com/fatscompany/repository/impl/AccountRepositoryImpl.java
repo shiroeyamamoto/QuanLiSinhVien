@@ -196,6 +196,24 @@ public class AccountRepositoryImpl implements AccountRepository {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Account.class, id);
     }
+      public Account getAcooutByUserName(String userName) {
+        Session session = this.factory.getObject().getCurrentSession();
+
+        // Sử dụng HQL để truy vấn tài khoản dựa trên tên người dùng
+        String hql = "FROM Account WHERE username = :userName";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", userName);
+
+        List<Account> results = query.getResultList();
+
+        // Kiểm tra xem có tài khoản nào được tìm thấy không
+        if (results != null && !results.isEmpty()) {
+            return results.get(0);
+        } else {
+        
+            return null;
+        }
+    }
 
     public Account getAccountByUserCurrent(String userName) {
         Session session = this.factory.getObject().getCurrentSession();

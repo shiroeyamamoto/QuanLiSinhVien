@@ -11,6 +11,8 @@ import { createContext, useReducer } from "react";
 import MyUserReducer from "./reducers/MyUserReducer";
 import MonHocGiangVien from "./components/MonHocGiangVien";
 import NhapDiemSinhVien from "./components/NhapDiemSinhVien";
+import PostDetail from "./components/PostDetail";
+import Register from "./components/Register";
 
 
 export const MyUserContext = createContext();
@@ -33,6 +35,8 @@ const App = () => {
           <Route path="/monhoc" element={<MonHoc/>} />
           <Route path="/monhocGV" element={<MonHocGiangVien/>} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/post/:postId" element={<PostDetail/>} />
           <Route path="/monhocs/:monhocId" element={<MonHocGiangVien />} />
           <Route path="/monhocs/:monhocId/nhapdiemsinhvien/:sinhvienId" element={<NhapDiemSinhVien />} />
         </Routes>

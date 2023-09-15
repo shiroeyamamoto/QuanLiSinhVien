@@ -109,4 +109,9 @@ public class AccountServiceImpl implements AccountService {
         return this.accountRepository.getAccountByUserCurrent(userName);
 
     }
+
+    @Override
+    public Account getAcooutByUserName(String userName) {
+        return this.accountRepository.getAcooutByUserName(userName);
+    }
 }

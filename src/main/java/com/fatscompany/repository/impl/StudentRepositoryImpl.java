@@ -9,6 +9,7 @@ import com.fatscompany.pojo.MonHoc;
 import com.fatscompany.pojo.Account;
 import com.fatscompany.pojo.SinhVien;
 import com.fatscompany.repository.StudentRepository;
+import com.fatscompany.service.AccountService;
 import com.fatscompany.service.HocService;
 import com.fatscompany.service.MonHocService;
 import java.util.ArrayList;
@@ -34,8 +35,9 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Autowired
     private HocService hocService;
-    
-     @Autowired
+    @Autowired
+    private AccountService accountService;
+    @Autowired
     private MonHocService monHocService;
 
     @Override
@@ -54,6 +56,19 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     }
 
+    private boolean isValidEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        return email.matches(regex);
+    }
+
+    private boolean isDuplicateEmail(String email) {
+        Session session = this.factory.getObject().getCurrentSession();
+        Query query = session.createQuery("SELECT COUNT(*) FROM SinhVien WHERE email = :email");
+        query.setParameter("email", email);
+        Long count = (Long) query.getSingleResult();
+        return count > 0;
+    }
+
     @Override
     public boolean addOrUpdateStudent(SinhVien sv) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -70,8 +85,33 @@ public class StudentRepositoryImpl implements StudentRepository {
         }
     }
 
+    public SinhVien createSinhVien(String firstName, String lastName, String email, String userNameAccount) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Email không hợp lệ.");
+        }
+
+        // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
+        if (isDuplicateEmail(email)) {
+            throw new IllegalArgumentException("Email đã tồn tại trong hệ thống.");
+        }
+
+        // Tạo một đối tượng SinhVien mới
+        SinhVien sinhVien = new SinhVien();
+        sinhVien.setFirstName(firstName);
+        sinhVien.setLastName(lastName);
+        sinhVien.setEmail(email);
+
+        // Gán AccountId cho SinhVien
+        Account accountStudent = this.accountService.getAcooutByUserName(userNameAccount);
+        sinhVien.setAccountSVid(accountStudent);
+
+        // Lưu SinhVien vào cơ sở dữ liệu
+        return (SinhVien) s.save(sinhVien);
+    }
+
     @Override
-    public List<SinhVien> getListSinhVienByHocId(List<Hoc>  hoc) {
+    public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) {
 
         try {
             Session s = this.factory.getObject().getCurrentSession();
@@ -97,6 +137,7 @@ public class StudentRepositoryImpl implements StudentRepository {
         }
 
     }
+
     public SinhVien getSinhVienByAccountId(Account account) {
         Session session = this.factory.getObject().getCurrentSession();
 

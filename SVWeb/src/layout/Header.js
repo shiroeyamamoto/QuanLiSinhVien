@@ -34,7 +34,7 @@ const Header = () => {
 
     const logout = () => {
         dispatch({
-            "type":"logout"
+            "type": "logout"
         })
     }
 
@@ -46,15 +46,30 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Link className='nav-link' to="/">Trang chủ</Link>
                         <Link className='nav-link' to="/forum">Diễn đàn</Link>
-                        {user ===null ? <></>:
-                        user.role != "ROLE_,STUDENT"?<></>:
-                        <Link className='nav-link' to="/monhoc">Danh Sách Môn Học</Link>
+                        {user === null ? <></> :
+                            user.role != "ROLE_,STUDENT" ? <></> :
+                                <Link className='nav-link' to="/monhoc">Danh Sách Môn Học</Link>
                         }
-                        
-                        {user ===null ? <Link className='nav-link text-danger' to="/login">Đăng Nhập</Link>:<>
-                            <Link className='nav-link text-danger' to="/">Chào  {user.username}</Link>
-                            <Button variant='danger' onClick={logout}>Đăng xuất</Button> 
-                        </>}
+
+                        {user === null ? (
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-danger" to="/login">Đăng Nhập</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-danger" to="/Register">Đăng Ký</Link>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-danger" to="/">Chào {user.username}</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <button className="btn btn-danger" onClick={logout}>Đăng xuất</button>
+                                </li>
+                            </>
+                        )}
                     </Nav>
                     <Form onSubmit={search} inline>
                         <Row>

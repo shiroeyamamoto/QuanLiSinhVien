@@ -19,6 +19,6 @@ public interface StudentService {
     boolean addOrUpdateStudent(SinhVien sv);
     
     public SinhVien getSinhVienById(int id);
-    
+    public SinhVien createSinhVien(String firstName, String lastName, String email, String userNameAccount);
     public List<SinhVien> getListSinhVienByHocId(List<Hoc> hoc) ;
 }
